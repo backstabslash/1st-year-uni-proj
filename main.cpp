@@ -2,7 +2,29 @@
 #include <vector>
 #include <map>
 using namespace std;
-//мэп мэпов? мэп(стринг предмет, мэп(стринг тип оценки, вектор оценок данного типа)), какие есть предметы
+
+const int home = 1;
+const int control = 2;
+const int solo = 3;
+const int exam = 4;
+
+class Human;
+class Student;
+class Teacher;
+
+class Mark {
+public:
+	string subject;
+	int type_of_mark;
+	int mark;
+	Mark() {}
+	Mark(string subject, int type_of_mark, int mark) {
+		this->subject = subject;
+		this->type_of_mark = type_of_mark;
+		this->mark = mark;
+	}
+};
+
 class Human {
 protected:
 	string full_name;
@@ -22,49 +44,48 @@ public:
 };
 
 class Student : public Human {
-private:
+public:
 	string grade;
 	vector<Mark> marks;
 public:
+	
 	Student():Human() {
 		grade = "Unknown";
-		marks = {};
 	}
-	Student(string grade, vector<Mark> marks):Human(full_name, age, height) {
+	Student(string full_name, int age, int height, string grade):Human(full_name, age, height) {
 		this->grade = grade;
 	}
 
 	void final_mark(string subject) {
 		
 	}
+	void print_marks() {
+
+	}
 };
 
 class Teacher : public Human {
 private:
 	string subject;
-	vector<Student> students;
+	vector<Student*> students;
 public:
 	Teacher():Human() {
 		subject = "Unknown";
-		vector<Student> students = {};
 	}
-	Teacher(string subject, vector<Student> students):Human(full_name, age, height) {
+	Teacher(string full_name, int age, int height, string subject):Human(full_name, age, height) {
 		this->subject = subject;
-		this->students = students;
 	}
-};
 
-class Mark {
-private:
-	int homework;
-	int test;
-	int independent_work;
-	int exam;
+	void add_new_mark(Student st, string subject, int type_of_mark, int mark) {
+		Mark newmark(subject, type_of_mark, mark);
+		st.marks.push_back(newmark);
+	}
+	void avg_mark() {
+
+	}
+	friend class Student;
 };
 
 int main() {
-
-
-
 	return 0;
 }
