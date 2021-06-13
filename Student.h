@@ -16,6 +16,8 @@ public:
 	Student(std::string full_name, int age, int height, std::string grade);
 	void final_mark(std::string subject);
 	void print_marks();
+	std::string GetGrade();
+	std::string GetName();
 	friend class Teacher;
 };
 

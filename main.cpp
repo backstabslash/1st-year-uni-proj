@@ -14,6 +14,162 @@ enum type_of_mark {
 	EXAM = 4
 };
 
+
+void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeacher)
+{
+	while (1)
+	{
+		int choice = 0, choicecase1 = 0, choicecase2 = 0, counter = 1, counter2 = 1, subjectchoice = 0;
+		cout << "Выберите подходящий вариант:\n";
+		cout << "1 - Увидеть среднюю оценку поставленную учителем\n";
+		cout << "2 - Увидеть все оценки студента\n";
+		cout << "3 - Увидеть итоговую оценку студента\n";
+		cout << "4 - Выход\n";
+		cin >> choice;
+		switch (choice)
+		{
+		case 1:
+			cout << "Какой учитель вам нужен?\n";
+			cout << "1 - Радева Ольга Степановна, Математика\n";
+			cout << "2 - Назаров Владимир Григорьевич, Физика\n";
+			cout << "3 - Трофимов Владислав Андреевич, История\n";
+			cin >> choicecase1;
+			if (choicecase1 == 1)
+			{
+				interfaceTeacher[0].avg_mark(); cout << endl;
+				break;
+			}
+
+			if (choicecase1 == 2)
+			{
+				interfaceTeacher[1].avg_mark(); cout << endl;
+				break;
+			}
+			if (choicecase1 == 3)
+			{
+				interfaceTeacher[2].avg_mark(); cout << endl;
+				break;
+			}
+		case 2:
+			cout << "В каком классе учится студент?\n";
+			cout << "1 - 11-А\n" << "2 - 11-Б\n";
+			cin >> choicecase2;
+			if (choicecase2 == 1) 
+			{
+				int studentchoice = 0;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-А") {
+						cout << "Введите " << counter << " если вы желаете увидеть оценки ученика " << interfaceStudent[i].GetName() << '\n';
+						counter++;
+					}
+				}
+				cin >> studentchoice;
+				int minicounter = 1;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-А") {
+						if (minicounter == studentchoice) {
+							interfaceStudent[i].print_marks();
+						}
+						minicounter++;
+					}
+				}
+			}
+			else
+			{
+				int studentchoice = 0;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-Б") {
+						cout << "Введите " << counter2 << " если вы желаете увидеть оценки ученика " << interfaceStudent[i].GetName() << '\n';
+						counter2++;
+					}
+				}
+				cin >> studentchoice;
+				int minicounter = 1;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-Б") {
+						if (minicounter == studentchoice) {
+							interfaceStudent[i].print_marks();
+						}
+						minicounter++;
+					}
+				}
+			}
+			break;
+		case 3:
+			cout << "По какому предмету вас интересует итоговая оценка?\n";
+			cout << "1 - Математика\n" << "2 - Физика\n" << "3 - История\n";
+			cin >> subjectchoice;
+			cout << "В каком классе учится студент?\n";
+			cout << "1 - 11-А\n" << "2 - 11-Б\n";
+			cin >> choicecase2;
+			if (choicecase2 == 1)
+			{
+				int studentchoice = 0;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-А") {
+						cout << "Введите " << counter << " если вы желаете увидеть итоговую оценку ученика " << interfaceStudent[i].GetName() << '\n';
+						counter++;
+					}
+				}
+				cin >> studentchoice;
+				int minicounter = 1;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-А") {
+						if (minicounter == studentchoice) {
+							if (subjectchoice == 1) {
+								interfaceStudent[i].final_mark("Математика");
+							}
+							else if (subjectchoice == 2) {
+								interfaceStudent[i].final_mark("Физика");
+							}
+							else { interfaceStudent[i].final_mark("История"); }
+						}
+						minicounter++;
+					}
+				}
+			}
+			else
+			{
+				int studentchoice = 0;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-Б") {
+						cout << "Введите " << counter2 << " если вы желаете увидеть итоговую оценку ученика " << interfaceStudent[i].GetName() << '\n';
+						counter2++;
+					}
+				}
+				cin >> studentchoice;
+				int minicounter = 1;
+				for (int i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-Б") {
+						if (minicounter == studentchoice) {
+							if (subjectchoice == 1) {
+								interfaceStudent[i].final_mark("Математика") ; 
+							}
+							else if (subjectchoice == 2) {
+								interfaceStudent[i].final_mark("Физика"); 
+							}
+							else { interfaceStudent[i].final_mark("История");  }
+						}
+						minicounter++;
+					}
+				}
+			}
+			break;
+		case 4:
+			exit(0);
+		}
+	}
+}
+
+
 int main() {
 	setlocale(LC_ALL, "ru");
 	// 11-A Students
@@ -523,10 +679,12 @@ int main() {
 	tcVladT.add_new_mark(stSvetO, 3, 10);
 	tcVladT.add_new_mark(stSvetO, 4, 9);
 
-	//Output
-	tcOlgaR.avg_mark();
-	tcVladN.avg_mark();
-	tcVladT.avg_mark();
+	// For menu / Menu
+	vector<Student> forInterfaceStudent =
+	{ stVasB, stPetrM, stDmiS, stVladS, stNikG, stMaksK, stIliaZ, stStepR, stAnasF, stSofS,
+	stTimS, stIvanS, stVladK, stVladM, stAndrF, stAndrO, stNikV, stAlexE, stDarB, stSvetO };
+	vector<Teacher> forInterfaceTeacher = { tcOlgaR, tcVladN, tcVladT };
+	Interface(forInterfaceStudent, forInterfaceTeacher);
 
 	return 0;
 }

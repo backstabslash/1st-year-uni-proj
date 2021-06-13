@@ -2,7 +2,7 @@
 
 Student::Student() : Human() 
 {
-    grade = "Unknown";
+    grade = "Неизвестно";
 }
 
 Student::Student(std::string full_name, int age, int height, std::string grade) : Human(full_name, age, height) 
@@ -18,26 +18,28 @@ void Student::final_mark(std::string subject)
         if (marks[i].subject == subject) 
         {
             ++a;
-            if (marks[i].type_of_mark != 2)
-            {
-                final_mark += (marks[i].mark * 3) / 4; //все работы кроме контрольных оцениваются на 75%, кр на 125%
-            }
-            else 
-            { 
-                final_mark += (marks[i].mark * 5) / 4;
-            }
+            final_mark += marks[i].mark;
         }
     }
-    final_mark /= a;
-    std::cout << "Student's " << this->full_name << " final mark is: " << final_mark << ".\n";
+    std::cout << "Итоговая оценка студента " << this->full_name << " по предмету " << subject << " равна " << final_mark/a << ".\n";
 }
 
 void Student::print_marks() 
 {
-    std::cout << "All marks that student " << this->full_name << " have: \n";
+    std::cout << "Все оценки студента " << this->full_name << ":\n";
     for (size_t i = 0; i < marks.size(); i++) 
     {
         std::cout << marks[i];
     }
     std::cout << '\n';
+}
+
+std::string Student::GetGrade() 
+{
+    return grade;
+}
+
+std::string Student::GetName()
+{
+    return full_name;
 }

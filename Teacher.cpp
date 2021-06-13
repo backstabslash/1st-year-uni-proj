@@ -2,7 +2,7 @@
 
 Teacher::Teacher() : Human() 
 {
-	subject = "Unknown";
+	subject = "Неизвестно";
 };
 
 Teacher::Teacher(std::string full_name, int age, int height, std::string subject) : Human(full_name, age, height) 
@@ -35,5 +35,5 @@ void Teacher::avg_mark()
             }
         }
     }
-    std::cout << "Teacher " << this->full_name << " gave an average mark of " << sum / quant << ".\n";
+    std::cout << "Учитель " << this->full_name << " поставил(a) в среднем оценку " << sum / quant << ".\n";
 }
