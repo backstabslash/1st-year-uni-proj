@@ -2,7 +2,7 @@
 
 Human::Human() 
 {
-	full_name = "Неизвестно";
+	full_name = "Unknown";
 	age = 0;
 	height = 0;
 }

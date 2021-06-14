@@ -19,5 +19,6 @@ public:
     void add_new_mark(Student& st, int type_of_mark, int mark); 
 	void add_student(Student& st);
 	void avg_mark();
+	std::string GetName();
 };
 

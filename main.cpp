@@ -14,61 +14,118 @@ enum type_of_mark {
 	EXAM = 4
 };
 
-
 void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeacher)
 {
 	while (1)
 	{
-		int choice = 0, choicecase1 = 0, choicecase2 = 0, counter = 1, counter2 = 1, subjectchoice = 0;
-		cout << "Выберите подходящий вариант:\n";
-		cout << "1 - Увидеть среднюю оценку поставленную учителем\n";
-		cout << "2 - Увидеть все оценки студента\n";
-		cout << "3 - Увидеть итоговую оценку студента\n";
-		cout << "4 - Выход\n";
-		cin >> choice;
+		short choice;
+		cout << "Choose an valid option:\n";
+		cout << "1 - Check average mark given by a teacher\n";
+		cout << "2 - Print all marks of a student\n";
+		cout << "3 - Check final mark of a student\n";
+		cout << "4 - Exit\n";
+		cin >> choice; 
+		while (true)
+		{
+			if (choice <= 0 || choice > 4)
+			{
+				cout << "Enter valid number! Try again." << endl;
+				cin.clear();
+				while (cin.get() != '\n');
+				cin >> choice;
+			}
+			else { break; }
+		}
 		switch (choice)
 		{
 		case 1:
-			cout << "Какой учитель вам нужен?\n";
-			cout << "1 - Радева Ольга Степановна, Математика\n";
-			cout << "2 - Назаров Владимир Григорьевич, Физика\n";
-			cout << "3 - Трофимов Владислав Андреевич, История\n";
+			cout << "What teacher do you need?\n";
+			cout << "1 - Radeva Olga Stepanovna, English\n";
+			cout << "2 - Nazarov Vladimir Grigorievich, Physics\n";
+			cout << "3 - Trofimov Vladislav Sergeevich, History\n";
+			short choicecase1;
 			cin >> choicecase1;
+			while (true)
+			{
+				if (choicecase1 <= 0 || choicecase1 > 3)
+				{
+					cout << "Enter valid number! Try again." << endl;
+					cin.clear();
+					while (cin.get() != '\n');
+					cin >> choicecase1;
+				}
+				else { break; }
+			}
 			if (choicecase1 == 1)
 			{
-				interfaceTeacher[0].avg_mark(); cout << endl;
+				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
+					if (interfaceTeacher[i].GetName() == "Radeva Olga Stepanovna") {
+						interfaceTeacher[i].avg_mark(); cout << endl;
+					}
+				}
 				break;
 			}
 
 			if (choicecase1 == 2)
 			{
-				interfaceTeacher[1].avg_mark(); cout << endl;
+				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
+					if (interfaceTeacher[i].GetName() == "Nazarov Vladimir Grigorievich") {
+						interfaceTeacher[i].avg_mark(); cout << endl;
+					}
+				}
 				break;
 			}
 			if (choicecase1 == 3)
 			{
-				interfaceTeacher[2].avg_mark(); cout << endl;
+				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
+					if (interfaceTeacher[i].GetName() == "Trofimov Vladislav Sergeevich") {
+						interfaceTeacher[i].avg_mark(); cout << endl;
+					}
+				}
 				break;
 			}
 		case 2:
-			cout << "В каком классе учится студент?\n";
-			cout << "1 - 11-А\n" << "2 - 11-Б\n";
+			cout << "In which grade does required student studiyng?\n";
+			cout << "1 - 11-A\n" << "2 - 11-B\n";
+			short choicecase2;
 			cin >> choicecase2;
+			while (true)
+			{
+				if (choicecase2 <= 0 || choicecase2 > 2)
+				{
+					cout << "Enter valid number! Try again." << endl;
+					cin.clear();
+					while (cin.get() != '\n');
+					cin >> choicecase2;
+				}
+				else { break; }
+			}
 			if (choicecase2 == 1) 
 			{
-				int studentchoice = 0;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				short studentchoice, counter = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-А") {
-						cout << "Введите " << counter << " если вы желаете увидеть оценки ученика " << interfaceStudent[i].GetName() << '\n';
+					if (interfaceStudent[i].GetGrade() == "11-A") {
+						cout << "Enter " << counter << " if you want to see marks of " << interfaceStudent[i].GetName() << '\n';
 						counter++;
 					}
 				}
 				cin >> studentchoice;
-				int minicounter = 1;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				while (true)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-А") {
+					if (studentchoice <= 0 || studentchoice > counter-1)
+					{
+						cout << "Enter valid number! Try again." << endl;
+						cin.clear();
+						while (cin.get() != '\n');
+						cin >> studentchoice;
+					}
+					else { break; }
+				}
+				short minicounter = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-A") {
 						if (minicounter == studentchoice) {
 							interfaceStudent[i].print_marks();
 						}
@@ -78,19 +135,30 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 			}
 			else
 			{
-				int studentchoice = 0;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				int studentchoice, counter2 = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-Б") {
-						cout << "Введите " << counter2 << " если вы желаете увидеть оценки ученика " << interfaceStudent[i].GetName() << '\n';
+					if (interfaceStudent[i].GetGrade() == "11-B") {
+						cout << "Enter " << counter2 << " if you want to see marks of " << interfaceStudent[i].GetName() << '\n';
 						counter2++;
 					}
 				}
 				cin >> studentchoice;
-				int minicounter = 1;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				while (true)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-Б") {
+					if (studentchoice <= 0 || studentchoice > counter2-1)
+					{
+						cout << "Enter valid number! Try again." << endl;
+						cin.clear();
+						while (cin.get() != '\n');
+						cin >> studentchoice;
+					}
+					else { break; }
+				}
+				short minicounter = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-B") {
 						if (minicounter == studentchoice) {
 							interfaceStudent[i].print_marks();
 						}
@@ -100,35 +168,69 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 			}
 			break;
 		case 3:
-			cout << "По какому предмету вас интересует итоговая оценка?\n";
-			cout << "1 - Математика\n" << "2 - Физика\n" << "3 - История\n";
+			cout << "Which subject are you interested in?\n";
+			cout << "1 - English\n" << "2 - Physics\n" << "3 - History\n";
+			short subjectchoice;
 			cin >> subjectchoice;
-			cout << "В каком классе учится студент?\n";
-			cout << "1 - 11-А\n" << "2 - 11-Б\n";
+			while (true)
+			{
+				if (subjectchoice <= 0 || subjectchoice > 3)
+				{
+					cout << "Enter valid number! Try again." << endl;
+					cin.clear();
+					while (cin.get() != '\n');
+					cin >> subjectchoice;
+				}
+				else { break; }
+			}
+			cout << "In which grade does required student studiyng?\n";
+			cout << "1 - 11-A\n" << "2 - 11-B\n";
 			cin >> choicecase2;
+			while (true)
+			{
+				if (choicecase2 <= 0 || choicecase2 > 2)
+				{
+					cout << "Enter valid number! Try again." << endl;
+					cin.clear();
+					while (cin.get() != '\n');
+					cin >> choicecase2;
+				}
+				else { break; }
+			}
 			if (choicecase2 == 1)
 			{
-				int studentchoice = 0;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				short studentchoice, counter = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-А") {
-						cout << "Введите " << counter << " если вы желаете увидеть итоговую оценку ученика " << interfaceStudent[i].GetName() << '\n';
+					if (interfaceStudent[i].GetGrade() == "11-A") {
+						cout << "Enter " << counter << " if you want to see the final mark of " << interfaceStudent[i].GetName() << '\n';
 						counter++;
 					}
 				}
 				cin >> studentchoice;
-				int minicounter = 1;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				while (true)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-А") {
+					if (studentchoice <= 0 || studentchoice > counter - 1)
+					{
+						cout << "Enter valid number! Try again." << endl;
+						cin.clear();
+						while (cin.get() != '\n');
+						cin >> studentchoice;
+					}
+					else { break; }
+				}
+				short minicounter = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-A") {
 						if (minicounter == studentchoice) {
 							if (subjectchoice == 1) {
-								interfaceStudent[i].final_mark("Математика");
+								interfaceStudent[i].final_mark("English"); cout << endl;
 							}
 							else if (subjectchoice == 2) {
-								interfaceStudent[i].final_mark("Физика");
+								interfaceStudent[i].final_mark("Physics"); cout << endl;
 							}
-							else { interfaceStudent[i].final_mark("История"); }
+							else { interfaceStudent[i].final_mark("History"); cout << endl; }
 						}
 						minicounter++;
 					}
@@ -136,27 +238,38 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 			}
 			else
 			{
-				int studentchoice = 0;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				short studentchoice, counter2 = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-Б") {
-						cout << "Введите " << counter2 << " если вы желаете увидеть итоговую оценку ученика " << interfaceStudent[i].GetName() << '\n';
+					if (interfaceStudent[i].GetGrade() == "11-B") {
+						cout << "Enter " << counter2 << " if you want to see the final mark of " << interfaceStudent[i].GetName() << '\n';
 						counter2++;
 					}
 				}
 				cin >> studentchoice;
-				int minicounter = 1;
-				for (int i = 0; i < interfaceStudent.size(); i++)
+				while (true)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-Б") {
+					if (studentchoice <= 0 || studentchoice > counter2 - 1)
+					{
+						cout << "Enter valid number! Try again." << endl;
+						cin.clear();
+						while (cin.get() != '\n');
+						cin >> studentchoice;
+					}
+					else { break; }
+				}
+				short minicounter = 1;
+				for (size_t i = 0; i < interfaceStudent.size(); i++)
+				{
+					if (interfaceStudent[i].GetGrade() == "11-B") {
 						if (minicounter == studentchoice) {
 							if (subjectchoice == 1) {
-								interfaceStudent[i].final_mark("Математика") ; 
+								interfaceStudent[i].final_mark("English"); cout << endl;
 							}
 							else if (subjectchoice == 2) {
-								interfaceStudent[i].final_mark("Физика"); 
+								interfaceStudent[i].final_mark("Physics"); cout << endl;
 							}
-							else { interfaceStudent[i].final_mark("История");  }
+							else { interfaceStudent[i].final_mark("History"); cout << endl; }
 						}
 						minicounter++;
 					}
@@ -171,33 +284,33 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 
 
 int main() {
-	setlocale(LC_ALL, "ru");
+
 	// 11-A Students
-	Student stVasB("Брагин Василий Петрович", 18, 180, "11-А");
-	Student stPetrM("Максимов Пётр Павлович", 17, 182, "11-А");
-	Student stDmiS("Соболев Дмитрий Григорьевич", 17, 176, "11-А");
-	Student stVladS("Суворов Владислав Викторович", 19, 182, "11-А");
-	Student stNikG("Гаврилов Никита Владимирович", 18, 178, "11-А");
-	Student stMaksK("Ковалёв Максим Михайлович", 18, 177, "11-А");
-	Student stIliaZ("Зайцев Илья Сергеевич", 18, 181, "11-А");
-	Student stStepR("Рыбаков Степан Семенович", 17, 180, "11-А");
-	Student stAnasF("Федосеева Анастасия Петровна", 18, 168, "11-А");
-	Student stSofS("Сорокина София Дмитриевна", 17, 172, "11-А");
+	Student stVasB("Bragin Vasiliy Petrovich", 18, 180, "11-A");
+	Student stPetrM("Maksimov Petr Pavlovich", 17, 182, "11-A");
+	Student stDmiS("Sobolev Dmitriy Grigorievich", 17, 176, "11-A");
+	Student stVladS("Suvorov Vladislav Viktorovich", 19, 182, "11-A");
+	Student stNikG("Gavrilov Nikita Vladimirovich", 18, 178, "11-A");
+	Student stMaksK("Kovalev Maksim Mykhailovich", 18, 177, "11-A");
+	Student stIliaZ("Zaytcev Ilia Sergeevich", 18, 181, "11-A");
+	Student stStepR("Rybakov Stepan Semenovich", 17, 180, "11-A");
+	Student stAnasF("Fedoseeva Anastasia Petrovna", 18, 168, "11-A");
+	Student stSofS("Sorokina Sofia Dmitrievna", 17, 172, "11-A");
 	// 11-B Students
-	Student stTimS("Стрюков Тимофей Михайлович", 18, 180, "11-Б");
-	Student stIvanS("Швергун Иван Сергеевич", 17, 182, "11-Б");
-	Student stVladK("Климов Владислав Владимирович", 17, 176, "11-Б");
-	Student stVladM("Маслоу Владислав Тимофеевич", 19, 182, "11-Б");
-	Student stAndrF("Фёдоров Андрей Михайлович", 18, 178, "11-Б");
-	Student stAndrO("Орехов Андрей Андреевич", 18, 177, "11-Б");
-	Student stNikV("Костин Никита Владиславович", 18, 181, "11-Б");
-	Student stAlexE("Ефремов Александр Григорьевич", 17, 180, "11-Б");
-	Student stDarB("Быкова Дарья Семеновна", 18, 168, "11-Б");
-	Student stSvetO("Орлова Светлана Степановна", 17, 172, "11-Б");
+	Student stTimS("Striukov Tymofii Mykhailovich", 18, 180, "11-B");
+	Student stIvanS("Shvergun Ivan Sergeevich", 17, 182, "11-B");
+	Student stVladK("Klimov Vladislav Vladimirovich", 17, 176, "11-B");
+	Student stVladM("Maslou Vladislav Timofeevich", 19, 182, "11-B");
+	Student stAndrF("Fedorov Andrey Mykhailovich", 18, 178, "11-B");
+	Student stAndrO("Orehov Andrey Andreevich", 18, 177, "11-B");
+	Student stNikV("Kostin Nikita Vladislavovich", 18, 181, "11-B");
+	Student stAlexE("Efremov Aleksandr Grigorievich", 17, 180, "11-B");
+	Student stDarB("Bykova Daria Semenovna", 18, 168, "11-B");
+	Student stSvetO("Orlova Svetlana Stepanovna", 17, 172, "11-B");
 	// Teachers
-	Teacher tcOlgaR("Радева Ольга Степановна", 43, 178, "Математика");
-	Teacher tcVladN("Назаров Владимир Григорьевич", 45, 185, "Физика");
-	Teacher tcVladT("Трофимов Владислав Андреевич", 51, 189, "История");
+	Teacher tcOlgaR("Radeva Olga Stepanovna", 43, 178, "English");
+	Teacher tcVladN("Nazarov Vladimir Grigorievich", 45, 185, "Physics");
+	Teacher tcVladT("Trofimov Vladislav Sergeevich", 51, 189, "History");
 	// 1/10 11-A
 	tcOlgaR.add_student(stVasB);
 	tcOlgaR.add_new_mark(stVasB, 1, 10);
