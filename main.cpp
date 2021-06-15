@@ -19,7 +19,7 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 	while (1)
 	{
 		short choice;
-		cout << "Choose an valid option:\n";
+		cout << "Choose an appropriate option:\n";
 		cout << "1 - Check average mark given by a teacher\n";
 		cout << "2 - Print all marks of a student\n";
 		cout << "3 - Check final mark of a student\n";
@@ -59,33 +59,33 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 			if (choicecase1 == 1)
 			{
 				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
-					if (interfaceTeacher[i].GetName() == "Radeva Olga Stepanovna") {
+					if (interfaceTeacher[i].GetName() == "Radeva Olga Stepanovna") 
+					{
 						interfaceTeacher[i].avg_mark(); cout << endl;
 					}
 				}
-				break;
 			}
-
-			if (choicecase1 == 2)
+			else if (choicecase1 == 2)
 			{
 				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
-					if (interfaceTeacher[i].GetName() == "Nazarov Vladimir Grigorievich") {
+					if (interfaceTeacher[i].GetName() == "Nazarov Vladimir Grigorievich") 
+					{
 						interfaceTeacher[i].avg_mark(); cout << endl;
 					}
 				}
-				break;
 			}
-			if (choicecase1 == 3)
+			else
 			{
 				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
-					if (interfaceTeacher[i].GetName() == "Trofimov Vladislav Sergeevich") {
+					if (interfaceTeacher[i].GetName() == "Trofimov Vladislav Sergeevich")
+					{
 						interfaceTeacher[i].avg_mark(); cout << endl;
 					}
 				}
-				break;
 			}
+			break;
 		case 2:
-			cout << "In which grade does required student studiyng?\n";
+			cout << "In which grade does required student is studiyng?\n";
 			cout << "1 - 11-A\n" << "2 - 11-B\n";
 			short choicecase2;
 			cin >> choicecase2;
@@ -105,7 +105,8 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short studentchoice, counter = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-A") {
+					if (interfaceStudent[i].GetGrade() == "11-A")
+					{
 						cout << "Enter " << counter << " if you want to see marks of " << interfaceStudent[i].GetName() << '\n';
 						counter++;
 					}
@@ -125,8 +126,10 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short minicounter = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-A") {
-						if (minicounter == studentchoice) {
+					if (interfaceStudent[i].GetGrade() == "11-A") 
+					{
+						if (minicounter == studentchoice)
+						{
 							interfaceStudent[i].print_marks();
 						}
 						minicounter++;
@@ -158,8 +161,10 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short minicounter = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-B") {
-						if (minicounter == studentchoice) {
+					if (interfaceStudent[i].GetGrade() == "11-B") 
+					{
+						if (minicounter == studentchoice) 
+						{
 							interfaceStudent[i].print_marks();
 						}
 						minicounter++;
@@ -183,7 +188,7 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				}
 				else { break; }
 			}
-			cout << "In which grade does required student studiyng?\n";
+			cout << "In which grade does required student is studiyng?\n";
 			cout << "1 - 11-A\n" << "2 - 11-B\n";
 			cin >> choicecase2;
 			while (true)
@@ -202,7 +207,8 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short studentchoice, counter = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-A") {
+					if (interfaceStudent[i].GetGrade() == "11-A") 
+					{
 						cout << "Enter " << counter << " if you want to see the final mark of " << interfaceStudent[i].GetName() << '\n';
 						counter++;
 					}
@@ -222,12 +228,15 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short minicounter = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-A") {
+					if (interfaceStudent[i].GetGrade() == "11-A") 
+					{
 						if (minicounter == studentchoice) {
-							if (subjectchoice == 1) {
+							if (subjectchoice == 1) 
+							{
 								interfaceStudent[i].final_mark("English"); cout << endl;
 							}
-							else if (subjectchoice == 2) {
+							else if (subjectchoice == 2) 
+							{
 								interfaceStudent[i].final_mark("Physics"); cout << endl;
 							}
 							else { interfaceStudent[i].final_mark("History"); cout << endl; }
@@ -241,7 +250,8 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short studentchoice, counter2 = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-B") {
+					if (interfaceStudent[i].GetGrade() == "11-B") 
+					{
 						cout << "Enter " << counter2 << " if you want to see the final mark of " << interfaceStudent[i].GetName() << '\n';
 						counter2++;
 					}
@@ -261,12 +271,15 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 				short minicounter = 1;
 				for (size_t i = 0; i < interfaceStudent.size(); i++)
 				{
-					if (interfaceStudent[i].GetGrade() == "11-B") {
-						if (minicounter == studentchoice) {
+					if (interfaceStudent[i].GetGrade() == "11-B")
+					{
+						if (minicounter == studentchoice)
+						{
 							if (subjectchoice == 1) {
 								interfaceStudent[i].final_mark("English"); cout << endl;
 							}
-							else if (subjectchoice == 2) {
+							else if (subjectchoice == 2) 
+							{
 								interfaceStudent[i].final_mark("Physics"); cout << endl;
 							}
 							else { interfaceStudent[i].final_mark("History"); cout << endl; }
@@ -793,6 +806,7 @@ int main() {
 	tcVladT.add_new_mark(stSvetO, 4, 9);
 
 	// For menu / Menu
+	// Add students and teachers to a suitable vectors for manipulations in menu
 	vector<Student> forInterfaceStudent =
 	{ stVasB, stPetrM, stDmiS, stVladS, stNikG, stMaksK, stIliaZ, stStepR, stAnasF, stSofS,
 	stTimS, stIvanS, stVladK, stVladM, stAndrF, stAndrO, stNikV, stAlexE, stDarB, stSvetO };
