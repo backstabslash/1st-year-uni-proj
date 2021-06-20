@@ -76,8 +76,3 @@ std::string Student::GetGrade()
 {
     return grade;
 }
-
-std::string Student::GetName()
-{
-    return full_name;
-}

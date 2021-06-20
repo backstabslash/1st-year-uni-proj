@@ -20,7 +20,6 @@ public:
 	void print_marks();
 	std::string short_info();
 	std::string GetGrade();
-	std::string GetName();
 	friend class Teacher;
 };
 

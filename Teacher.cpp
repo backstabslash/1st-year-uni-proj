@@ -48,11 +48,6 @@ std::string Teacher::short_info()
     return s;
 }
 
-std::string Teacher::GetName()
-{
-    return full_name;
-}
-
 std::string Teacher::GetSubject()
 {
     return subject;

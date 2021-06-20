@@ -21,7 +21,6 @@ public:
 	int count_avg_mark();
 	void print_avg_mark();
 	std::string short_info();
-	std::string GetName();
 	std::string GetSubject();
 };
 

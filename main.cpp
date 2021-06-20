@@ -147,7 +147,7 @@ void InterfacePrintAllStudent(vector<Student>& interfaceStudent)
 
 void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& interfaceTeacher)
 {
-	vector<string> subjects;
+	vector<string> subjects; //adding all the subjects to a single vector
 	short a = 0;
 	subjects.push_back(interfaceTeacher[0].GetSubject());
 	for (size_t i = 0; i < interfaceTeacher.size(); i++)
@@ -158,7 +158,7 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 			a++;
 		}
 	}
-	cout << "Which subject are you interested in?\n";
+	cout << "Which subject are you interested in?\n"; // make a choice from vector
 	for (size_t i = 0; i < subjects.size(); i++)
 	{
 		cout << "Enter " << i + 1 << " if you want " << subjects[i] << endl;
@@ -176,7 +176,7 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 		}
 		else { break; }
 	}
-	vector<string> grades;
+	vector<string> grades; // adding all the grades to a single vector
 	a = 0;
 	grades.push_back(interfaceStudent[0].GetGrade());
 	for (size_t i = 0; i < interfaceStudent.size(); i++)
@@ -187,7 +187,7 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 			a++;
 		}
 	}
-	cout << "In which grade does required student is studiyng?\n";
+	cout << "In which grade does required student is studiyng?\n"; // make a choice from vector
 	for (size_t i = 0; i < grades.size(); i++)
 	{
 		cout << "Enter " << i + 1 << " if in " << grades[i] << endl;
@@ -205,7 +205,7 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 		}
 		else { break; }
 	}
-	short startstudent = 0, minicounter = 0; bool notfound = true;
+	short startstudent = 0, minicounter = 0; bool notfound = true; // finding first student's id basing on grade
 	while (notfound && minicounter < interfaceStudent.size())
 	{
 		if (grades[choicecase2 - 1] == interfaceStudent[minicounter].GetGrade())
@@ -217,10 +217,10 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 	}
 	short willneedlater = startstudent;
 	short counter = 0;
-	while (startstudent < interfaceStudent.size() && interfaceStudent[startstudent].GetGrade() == grades[choicecase2 - 1])
+	while (startstudent < interfaceStudent.size() && interfaceStudent[startstudent].GetGrade() == grades[choicecase2 - 1]) // output all students from chosen grade
 	{
 		counter++; startstudent++;
-		cout << "Enter " << counter << " if you want to see all the marks of " << interfaceStudent[startstudent - 1].GetName() << endl;
+		cout << "Enter " << counter << " if you want to see all the marks of " << interfaceStudent[startstudent - 1].GetName() << endl; // choose one from list
 
 	}
 	short studentchoice;
@@ -236,7 +236,7 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 		}
 		else { break; }
 	}
-	interfaceStudent[studentchoice + willneedlater - 1].count_final_mark(subjects[subjectchoice-1]);
+	interfaceStudent[studentchoice + willneedlater - 1].count_final_mark(subjects[subjectchoice-1]); // output needed info about  student (id of student + choice made by user)
 	interfaceStudent[studentchoice + willneedlater - 1].print_final_mark(subjects[subjectchoice - 1]);
 }
 

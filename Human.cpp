@@ -13,3 +13,8 @@ Human::Human(std::string full_name, int age, int height)
 	this->age = age;
 	this->height = height;
 }
+
+std::string Human::GetName()
+{
+	return full_name;
+}

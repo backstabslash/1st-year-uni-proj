@@ -10,6 +10,7 @@ protected:
 public:
 	Human();
 	Human(std::string full_name, int age, int height);
+	std::string GetName();
 };
 
 
