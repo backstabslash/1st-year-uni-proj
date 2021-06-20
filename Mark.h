@@ -1,23 +1,20 @@
 #pragma once
 #include <string>
 #include <fstream>
-#include <iomanip>
+
+enum Type_of_Mark {
+	HOME = 1,
+	TEST = 2,
+	INDEPENDENT = 3,
+	EXAM = 4,
+	FINAL = 5
+};
 
 struct Mark
 {
 	std::string subject;
-	int type_of_mark;
+	Type_of_Mark type_of_mark;
 	int mark;
-	Mark(std::string subject, int type_of_mark, int mark);
-	friend std::ostream& operator<<(std::ostream& os, Mark& mark)
-	{
-		os << "Subject: " << mark.subject <<
-			"  Type of work: ";
-		if (mark.type_of_mark == 1) { os << "Homework   "; }
-		else if (mark.type_of_mark == 2) { os << "Test       "; }
-		else if (mark.type_of_mark == 3) { os << "Independent"; }
-		else { os <<"Exam       "; }
-		os << "  Mark " << mark.mark << ";\n";
-		return os;
-	}
+	Mark(std::string subject, Type_of_Mark type_of_mark, int mark);
+	friend std::ostream& operator<<(std::ostream& os, Mark& mark);
 };

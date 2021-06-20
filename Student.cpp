@@ -10,18 +10,56 @@ Student::Student(std::string full_name, int age, int height, std::string grade) 
     this->grade = grade;
 }
 
-void Student::final_mark(std::string subject)
+int Student::count_final_mark(const std::string& subject)
 {
     int final_mark = 0, a = 0;
     for (size_t i = 0; i < marks.size(); i++) 
     {
         if (marks[i].subject == subject) 
         {
-            ++a;
-            final_mark += marks[i].mark;
+            if (marks[i].type_of_mark == 4) 
+            {
+                a+=2;
+                final_mark += marks[i].mark;
+                final_mark += marks[i].mark;
+            }
+            else 
+            {
+                a++;
+                final_mark += marks[i].mark;
+            }
+           
         }
     }
-    std::cout << "Final mark of " << this->full_name << " on subject " << subject << " is " << final_mark/a << ".\n";
+    if (!already_has_final(subject))
+    {
+        marks.push_back(Mark(subject, FINAL, final_mark / a));
+    }
+    return final_mark / a;
+}
+
+void Student::print_final_mark(const std::string& subject) 
+{
+    std::cout << "Final mark of " << this->full_name << " on subject " << subject << " is " << count_final_mark(subject) << ".\n\n";
+}
+
+bool Student::already_has_final(const std::string& subject)
+{
+    bool already_has = false;
+    for (int i = 0; i < marks.size(); i++) 
+    {
+        if (marks[i].type_of_mark == 5) 
+        {
+            already_has = true;
+        }
+    }
+    return already_has;
+}
+
+std::string Student::short_info()
+{
+    std::string s = full_name + "\n";
+    return s;
 }
 
 void Student::print_marks() 

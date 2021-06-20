@@ -16,9 +16,12 @@ private:
 public:
 	Teacher();
 	Teacher(std::string full_name, int age, int height, std::string subject);
-    void add_new_mark(Student& st, int type_of_mark, int mark); 
+    void add_new_mark(Student& st, Type_of_Mark type_of_mark, const int mark);
 	void add_student(Student& st);
-	void avg_mark();
+	int count_avg_mark();
+	void print_avg_mark();
+	std::string short_info();
 	std::string GetName();
+	std::string GetSubject();
 };
 

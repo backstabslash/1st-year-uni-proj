@@ -7,14 +7,11 @@
 #include "Mark.h"
 using namespace std;
 
-enum type_of_mark {
-	HOME = 1,
-	TEST = 2,
-	INDEPENDENT = 3,
-	EXAM = 4
-};
+void InterfaceAverageTeacher(vector<Teacher>& interfaceTeacher);
+void InterfacePrintAllStudent(vector<Student>& interfaceStudent);
+void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& interfaceTeacher);
 
-void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeacher)
+void Interface(vector<Student>& interfaceStudent, vector<Teacher>& interfaceTeacher)
 {
 	while (1)
 	{
@@ -39,255 +36,13 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 		switch (choice)
 		{
 		case 1:
-			cout << "What teacher do you need?\n";
-			cout << "1 - Radeva Olga Stepanovna, English\n";
-			cout << "2 - Nazarov Vladimir Grigorievich, Physics\n";
-			cout << "3 - Trofimov Vladislav Sergeevich, History\n";
-			short choicecase1;
-			cin >> choicecase1;
-			while (true)
-			{
-				if (choicecase1 <= 0 || choicecase1 > 3)
-				{
-					cout << "Enter valid number! Try again." << endl;
-					cin.clear();
-					while (cin.get() != '\n');
-					cin >> choicecase1;
-				}
-				else { break; }
-			}
-			if (choicecase1 == 1)
-			{
-				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
-					if (interfaceTeacher[i].GetName() == "Radeva Olga Stepanovna") 
-					{
-						interfaceTeacher[i].avg_mark(); cout << endl;
-					}
-				}
-			}
-			else if (choicecase1 == 2)
-			{
-				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
-					if (interfaceTeacher[i].GetName() == "Nazarov Vladimir Grigorievich") 
-					{
-						interfaceTeacher[i].avg_mark(); cout << endl;
-					}
-				}
-			}
-			else
-			{
-				for (size_t i = 0; i < interfaceTeacher.size(); i++) {
-					if (interfaceTeacher[i].GetName() == "Trofimov Vladislav Sergeevich")
-					{
-						interfaceTeacher[i].avg_mark(); cout << endl;
-					}
-				}
-			}
+			InterfaceAverageTeacher(interfaceTeacher);
 			break;
 		case 2:
-			cout << "In which grade does required student is studiyng?\n";
-			cout << "1 - 11-A\n" << "2 - 11-B\n";
-			short choicecase2;
-			cin >> choicecase2;
-			while (true)
-			{
-				if (choicecase2 <= 0 || choicecase2 > 2)
-				{
-					cout << "Enter valid number! Try again." << endl;
-					cin.clear();
-					while (cin.get() != '\n');
-					cin >> choicecase2;
-				}
-				else { break; }
-			}
-			if (choicecase2 == 1) 
-			{
-				short studentchoice, counter = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-A")
-					{
-						cout << "Enter " << counter << " if you want to see marks of " << interfaceStudent[i].GetName() << '\n';
-						counter++;
-					}
-				}
-				cin >> studentchoice;
-				while (true)
-				{
-					if (studentchoice <= 0 || studentchoice > counter-1)
-					{
-						cout << "Enter valid number! Try again." << endl;
-						cin.clear();
-						while (cin.get() != '\n');
-						cin >> studentchoice;
-					}
-					else { break; }
-				}
-				short minicounter = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-A") 
-					{
-						if (minicounter == studentchoice)
-						{
-							interfaceStudent[i].print_marks();
-						}
-						minicounter++;
-					}
-				}
-			}
-			else
-			{
-				int studentchoice, counter2 = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-B") {
-						cout << "Enter " << counter2 << " if you want to see marks of " << interfaceStudent[i].GetName() << '\n';
-						counter2++;
-					}
-				}
-				cin >> studentchoice;
-				while (true)
-				{
-					if (studentchoice <= 0 || studentchoice > counter2-1)
-					{
-						cout << "Enter valid number! Try again." << endl;
-						cin.clear();
-						while (cin.get() != '\n');
-						cin >> studentchoice;
-					}
-					else { break; }
-				}
-				short minicounter = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-B") 
-					{
-						if (minicounter == studentchoice) 
-						{
-							interfaceStudent[i].print_marks();
-						}
-						minicounter++;
-					}
-				}
-			}
+			InterfacePrintAllStudent(interfaceStudent);
 			break;
 		case 3:
-			cout << "Which subject are you interested in?\n";
-			cout << "1 - English\n" << "2 - Physics\n" << "3 - History\n";
-			short subjectchoice;
-			cin >> subjectchoice;
-			while (true)
-			{
-				if (subjectchoice <= 0 || subjectchoice > 3)
-				{
-					cout << "Enter valid number! Try again." << endl;
-					cin.clear();
-					while (cin.get() != '\n');
-					cin >> subjectchoice;
-				}
-				else { break; }
-			}
-			cout << "In which grade does required student is studiyng?\n";
-			cout << "1 - 11-A\n" << "2 - 11-B\n";
-			cin >> choicecase2;
-			while (true)
-			{
-				if (choicecase2 <= 0 || choicecase2 > 2)
-				{
-					cout << "Enter valid number! Try again." << endl;
-					cin.clear();
-					while (cin.get() != '\n');
-					cin >> choicecase2;
-				}
-				else { break; }
-			}
-			if (choicecase2 == 1)
-			{
-				short studentchoice, counter = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-A") 
-					{
-						cout << "Enter " << counter << " if you want to see the final mark of " << interfaceStudent[i].GetName() << '\n';
-						counter++;
-					}
-				}
-				cin >> studentchoice;
-				while (true)
-				{
-					if (studentchoice <= 0 || studentchoice > counter - 1)
-					{
-						cout << "Enter valid number! Try again." << endl;
-						cin.clear();
-						while (cin.get() != '\n');
-						cin >> studentchoice;
-					}
-					else { break; }
-				}
-				short minicounter = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-A") 
-					{
-						if (minicounter == studentchoice) {
-							if (subjectchoice == 1) 
-							{
-								interfaceStudent[i].final_mark("English"); cout << endl;
-							}
-							else if (subjectchoice == 2) 
-							{
-								interfaceStudent[i].final_mark("Physics"); cout << endl;
-							}
-							else { interfaceStudent[i].final_mark("History"); cout << endl; }
-						}
-						minicounter++;
-					}
-				}
-			}
-			else
-			{
-				short studentchoice, counter2 = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-B") 
-					{
-						cout << "Enter " << counter2 << " if you want to see the final mark of " << interfaceStudent[i].GetName() << '\n';
-						counter2++;
-					}
-				}
-				cin >> studentchoice;
-				while (true)
-				{
-					if (studentchoice <= 0 || studentchoice > counter2 - 1)
-					{
-						cout << "Enter valid number! Try again." << endl;
-						cin.clear();
-						while (cin.get() != '\n');
-						cin >> studentchoice;
-					}
-					else { break; }
-				}
-				short minicounter = 1;
-				for (size_t i = 0; i < interfaceStudent.size(); i++)
-				{
-					if (interfaceStudent[i].GetGrade() == "11-B")
-					{
-						if (minicounter == studentchoice)
-						{
-							if (subjectchoice == 1) {
-								interfaceStudent[i].final_mark("English"); cout << endl;
-							}
-							else if (subjectchoice == 2) 
-							{
-								interfaceStudent[i].final_mark("Physics"); cout << endl;
-							}
-							else { interfaceStudent[i].final_mark("History"); cout << endl; }
-						}
-						minicounter++;
-					}
-				}
-			}
+			InterfaceFinalStudent(interfaceStudent, interfaceTeacher);
 			break;
 		case 4:
 			exit(0);
@@ -295,6 +50,195 @@ void Interface(vector<Student> interfaceStudent, vector<Teacher> interfaceTeache
 	}
 }
 
+void InterfaceAverageTeacher(vector<Teacher>& interfaceTeacher)
+{
+	for (size_t i = 0; i < interfaceTeacher.size(); i++)
+	{
+		cout << "Enter " << i+1 << " to see average mark of " << interfaceTeacher[i].short_info();
+	}
+	short choicecase1;
+	cin >> choicecase1;
+	while (true)
+	{
+		if (choicecase1 <= 0 || choicecase1 > interfaceTeacher.size())
+		{
+			cout << "Enter valid number! Try again.";
+			cin.clear();
+			while (cin.get() != '\n');
+			cin >> choicecase1;
+		}
+		else { break; }
+	}
+	for (size_t i = 0; i < interfaceTeacher.size(); i++)
+	{
+		if (i + 1 == choicecase1) 
+		{
+			interfaceTeacher[i].count_avg_mark();
+			interfaceTeacher[i].print_avg_mark();
+			cout << endl;
+		}
+	}
+}
+
+void InterfacePrintAllStudent(vector<Student>& interfaceStudent)
+{
+	vector<string> grades; 
+	short a = 0;
+	grades.push_back(interfaceStudent[0].GetGrade());
+	for (size_t i = 0; i < interfaceStudent.size(); i++)
+	{	
+		if (interfaceStudent[i].GetGrade() != grades[a]) 
+		{
+			grades.push_back(interfaceStudent[i].GetGrade());
+			a++;
+		}
+	}
+	cout << "In which grade does required student is studiyng?\n";
+	for (size_t i = 0; i < grades.size(); i++)
+	{
+		cout << "Enter " << i + 1 << " if in " << grades[i] << endl;
+	}
+	short choicecase2;
+	cin >> choicecase2;
+	while (true)
+	{
+		if (choicecase2 <= 0 || choicecase2 > grades.size())
+		{
+			cout << "Enter valid number! Try again." << endl;
+			cin.clear();
+			while (cin.get() != '\n');
+			cin >> choicecase2;
+		}
+		else { break; }
+	}
+	short startstudent = 0, minicounter = 0; bool notfound = true;
+	while (notfound && minicounter < interfaceStudent.size())
+	{
+		if (grades[choicecase2 - 1] == interfaceStudent[minicounter].GetGrade())
+		{
+			startstudent = minicounter;
+			notfound = false;
+		}
+		minicounter++;
+	}
+	short willneedlater = startstudent;
+	short counter = 0;
+	while (startstudent < interfaceStudent.size() && interfaceStudent[startstudent].GetGrade() == grades[choicecase2 - 1] )
+	{
+		counter++; startstudent++;
+		cout << "Enter " << counter << " if you want to see all the marks of " << interfaceStudent[startstudent-1].GetName() << endl;
+		
+	}
+	short studentchoice;
+	cin >> studentchoice;
+	while (true)
+	{
+		if (studentchoice <= 0 || studentchoice > counter)
+		{
+			cout << "Enter valid number! Try again." << endl;
+			cin.clear();
+			while (cin.get() != '\n');
+			cin >> studentchoice;
+		}
+		else { break; }
+	}
+	interfaceStudent[studentchoice+willneedlater-1].print_marks();
+}
+
+void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& interfaceTeacher)
+{
+	vector<string> subjects;
+	short a = 0;
+	subjects.push_back(interfaceTeacher[0].GetSubject());
+	for (size_t i = 0; i < interfaceTeacher.size(); i++)
+	{
+		if (interfaceTeacher[i].GetSubject() != subjects[a])
+		{
+			subjects.push_back(interfaceTeacher[i].GetSubject());
+			a++;
+		}
+	}
+	cout << "Which subject are you interested in?\n";
+	for (size_t i = 0; i < subjects.size(); i++)
+	{
+		cout << "Enter " << i + 1 << " if you want " << subjects[i] << endl;
+	}
+	short subjectchoice;
+	cin >> subjectchoice;
+	while (true)
+	{
+		if (subjectchoice <= 0 || subjectchoice > subjects.size())
+		{
+			cout << "Enter valid number! Try again." << endl;
+			cin.clear();
+			while (cin.get() != '\n');
+			cin >> subjectchoice;
+		}
+		else { break; }
+	}
+	vector<string> grades;
+	a = 0;
+	grades.push_back(interfaceStudent[0].GetGrade());
+	for (size_t i = 0; i < interfaceStudent.size(); i++)
+	{
+		if (interfaceStudent[i].GetGrade() != grades[a])
+		{
+			grades.push_back(interfaceStudent[i].GetGrade());
+			a++;
+		}
+	}
+	cout << "In which grade does required student is studiyng?\n";
+	for (size_t i = 0; i < grades.size(); i++)
+	{
+		cout << "Enter " << i + 1 << " if in " << grades[i] << endl;
+	}
+	short choicecase2;
+	cin >> choicecase2;
+	while (true)
+	{
+		if (choicecase2 <= 0 || choicecase2 > grades.size())
+		{
+			cout << "Enter valid number! Try again." << endl;
+			cin.clear();
+			while (cin.get() != '\n');
+			cin >> choicecase2;
+		}
+		else { break; }
+	}
+	short startstudent = 0, minicounter = 0; bool notfound = true;
+	while (notfound && minicounter < interfaceStudent.size())
+	{
+		if (grades[choicecase2 - 1] == interfaceStudent[minicounter].GetGrade())
+		{
+			startstudent = minicounter;
+			notfound = false;
+		}
+		minicounter++;
+	}
+	short willneedlater = startstudent;
+	short counter = 0;
+	while (startstudent < interfaceStudent.size() && interfaceStudent[startstudent].GetGrade() == grades[choicecase2 - 1])
+	{
+		counter++; startstudent++;
+		cout << "Enter " << counter << " if you want to see all the marks of " << interfaceStudent[startstudent - 1].GetName() << endl;
+
+	}
+	short studentchoice;
+	cin >> studentchoice;
+	while (true)
+	{
+		if (studentchoice <= 0 || studentchoice > counter)
+		{
+			cout << "Enter valid number! Try again." << endl;
+			cin.clear();
+			while (cin.get() != '\n');
+			cin >> studentchoice;
+		}
+		else { break; }
+	}
+	interfaceStudent[studentchoice + willneedlater - 1].count_final_mark(subjects[subjectchoice-1]);
+	interfaceStudent[studentchoice + willneedlater - 1].print_final_mark(subjects[subjectchoice - 1]);
+}
 
 int main() {
 
@@ -326,492 +270,491 @@ int main() {
 	Teacher tcVladT("Trofimov Vladislav Sergeevich", 51, 189, "History");
 	// 1/10 11-A
 	tcOlgaR.add_student(stVasB);
-	tcOlgaR.add_new_mark(stVasB, 1, 10);
-	tcOlgaR.add_new_mark(stVasB, 1, 9);
-	tcOlgaR.add_new_mark(stVasB, 2, 12);
-	tcOlgaR.add_new_mark(stVasB, 3, 8);
-	tcOlgaR.add_new_mark(stVasB, 3, 10);
-	tcOlgaR.add_new_mark(stVasB, 4, 9);
+	tcOlgaR.add_new_mark(stVasB, HOME, 10);
+	tcOlgaR.add_new_mark(stVasB, HOME, 9);
+	tcOlgaR.add_new_mark(stVasB, TEST, 12);
+	tcOlgaR.add_new_mark(stVasB, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stVasB, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stVasB, EXAM, 9);
 
 	tcVladN.add_student(stVasB);
-	tcVladN.add_new_mark(stVasB, 1, 10);
-	tcVladN.add_new_mark(stVasB, 1, 7);
-	tcVladN.add_new_mark(stVasB, 2, 11);
-	tcVladN.add_new_mark(stVasB, 3, 8);
-	tcVladN.add_new_mark(stVasB, 3, 10);
-	tcVladN.add_new_mark(stVasB, 4, 9);
+	tcVladN.add_new_mark(stVasB, HOME, 10);
+	tcVladN.add_new_mark(stVasB, HOME, 7);
+	tcVladN.add_new_mark(stVasB, TEST, 11);
+	tcVladN.add_new_mark(stVasB, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stVasB, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stVasB, EXAM, 9);
 
 	tcVladT.add_student(stVasB);
-	tcVladT.add_new_mark(stVasB, 1, 5);
-	tcVladT.add_new_mark(stVasB, 1, 9);
-	tcVladT.add_new_mark(stVasB, 2, 11);
-	tcVladT.add_new_mark(stVasB, 3, 8);
-	tcVladT.add_new_mark(stVasB, 3, 10);
-	tcVladT.add_new_mark(stVasB, 4, 9);
+	tcVladT.add_new_mark(stVasB, HOME, 5);
+	tcVladT.add_new_mark(stVasB, HOME, 9);
+	tcVladT.add_new_mark(stVasB, TEST, 11);
+	tcVladT.add_new_mark(stVasB, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stVasB, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stVasB, EXAM, 9);
 	// 2/10
 	tcOlgaR.add_student(stPetrM);
-	tcOlgaR.add_new_mark(stPetrM, 1, 10);
-	tcOlgaR.add_new_mark(stPetrM, 1, 9);
-	tcOlgaR.add_new_mark(stPetrM, 2, 4);
-	tcOlgaR.add_new_mark(stPetrM, 3, 8);
-	tcOlgaR.add_new_mark(stPetrM, 3, 10);
-	tcOlgaR.add_new_mark(stPetrM, 4, 9);
+	tcOlgaR.add_new_mark(stPetrM, HOME, 10);
+	tcOlgaR.add_new_mark(stPetrM, HOME, 9);
+	tcOlgaR.add_new_mark(stPetrM, TEST, 4);
+	tcOlgaR.add_new_mark(stPetrM, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stPetrM, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stPetrM, EXAM, 9);
 
 	tcVladN.add_student(stPetrM);
-	tcVladN.add_new_mark(stPetrM, 1, 10);
-	tcVladN.add_new_mark(stPetrM, 1, 9);
-	tcVladN.add_new_mark(stPetrM, 2, 11);
-	tcVladN.add_new_mark(stPetrM, 3, 8);
-	tcVladN.add_new_mark(stPetrM, 3, 5);
-	tcVladN.add_new_mark(stPetrM, 4, 9);
+	tcVladN.add_new_mark(stPetrM, HOME, 10);
+	tcVladN.add_new_mark(stPetrM, HOME, 9);
+	tcVladN.add_new_mark(stPetrM, TEST, 11);
+	tcVladN.add_new_mark(stPetrM, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stPetrM, INDEPENDENT, 5);
+	tcVladN.add_new_mark(stPetrM, EXAM, 9);
 
 	tcVladT.add_student(stPetrM);
-	tcVladT.add_new_mark(stPetrM, 1, 10);
-	tcVladT.add_new_mark(stPetrM, 1, 9);
-	tcVladT.add_new_mark(stPetrM, 2, 7);
-	tcVladT.add_new_mark(stPetrM, 3, 8);
-	tcVladT.add_new_mark(stPetrM, 3, 10);
-	tcVladT.add_new_mark(stPetrM, 4, 9);
+	tcVladT.add_new_mark(stPetrM, HOME, 10);
+	tcVladT.add_new_mark(stPetrM, HOME, 9);
+	tcVladT.add_new_mark(stPetrM, TEST, 7);
+	tcVladT.add_new_mark(stPetrM, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stPetrM, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stPetrM, EXAM, 9);
 	// 3/10
 	tcOlgaR.add_student(stDmiS);
-	tcOlgaR.add_new_mark(stDmiS, 1, 10);
-	tcOlgaR.add_new_mark(stDmiS, 1, 9);
-	tcOlgaR.add_new_mark(stDmiS, 2, 11);
-	tcOlgaR.add_new_mark(stDmiS, 3, 8);
-	tcOlgaR.add_new_mark(stDmiS, 3, 5);
-	tcOlgaR.add_new_mark(stDmiS, 4, 9);
+	tcOlgaR.add_new_mark(stDmiS, HOME, 10);
+	tcOlgaR.add_new_mark(stDmiS, HOME, 9);
+	tcOlgaR.add_new_mark(stDmiS, TEST, 11);
+	tcOlgaR.add_new_mark(stDmiS, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stDmiS, INDEPENDENT, 5);
+	tcOlgaR.add_new_mark(stDmiS, EXAM, 9);
 
 	tcVladN.add_student(stDmiS);
-	tcVladN.add_new_mark(stDmiS, 1, 2);
-	tcVladN.add_new_mark(stDmiS, 1, 9);
-	tcVladN.add_new_mark(stDmiS, 2, 11);
-	tcVladN.add_new_mark(stDmiS, 3, 8);
-	tcVladN.add_new_mark(stDmiS, 3, 10);
-	tcVladN.add_new_mark(stDmiS, 4, 9);
+	tcVladN.add_new_mark(stDmiS, HOME, 2);
+	tcVladN.add_new_mark(stDmiS, HOME, 9);
+	tcVladN.add_new_mark(stDmiS, TEST, 11);
+	tcVladN.add_new_mark(stDmiS, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stDmiS, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stDmiS, EXAM, 9);
 
 	tcVladT.add_student(stDmiS);
-	tcVladT.add_new_mark(stDmiS, 1, 10);
-	tcVladT.add_new_mark(stDmiS, 1, 9);
-	tcVladT.add_new_mark(stDmiS, 2, 11);
-	tcVladT.add_new_mark(stDmiS, 3, 4);
-	tcVladT.add_new_mark(stDmiS, 3, 10);
-	tcVladT.add_new_mark(stDmiS, 4, 9);
+	tcVladT.add_new_mark(stDmiS, HOME, 10);
+	tcVladT.add_new_mark(stDmiS, HOME, 9);
+	tcVladT.add_new_mark(stDmiS, TEST, 11);
+	tcVladT.add_new_mark(stDmiS, INDEPENDENT, 4);
+	tcVladT.add_new_mark(stDmiS, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stDmiS, EXAM, 9);
 	// 4/10
 	tcOlgaR.add_student(stVladS);
-	tcOlgaR.add_new_mark(stVladS, 1, 11);
-	tcOlgaR.add_new_mark(stVladS, 1, 9);
-	tcOlgaR.add_new_mark(stVladS, 2, 11);
-	tcOlgaR.add_new_mark(stVladS, 3, 8);
-	tcOlgaR.add_new_mark(stVladS, 3, 10);
-	tcOlgaR.add_new_mark(stVladS, 4, 9);
+	tcOlgaR.add_new_mark(stVladS, HOME, 11);
+	tcOlgaR.add_new_mark(stVladS, HOME, 9);
+	tcOlgaR.add_new_mark(stVladS, TEST, 11);
+	tcOlgaR.add_new_mark(stVladS, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stVladS, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stVladS, EXAM, 9);
 
 	tcVladN.add_student(stVladS);
-	tcVladN.add_new_mark(stVladS, 1, 10);
-	tcVladN.add_new_mark(stVladS, 1, 9);
-	tcVladN.add_new_mark(stVladS, 2, 11);
-	tcVladN.add_new_mark(stVladS, 3, 12);
-	tcVladN.add_new_mark(stVladS, 3, 10);
-	tcVladN.add_new_mark(stVladS, 4, 9);
+	tcVladN.add_new_mark(stVladS, HOME, 10);
+	tcVladN.add_new_mark(stVladS, HOME, 9);
+	tcVladN.add_new_mark(stVladS, TEST, 11);
+	tcVladN.add_new_mark(stVladS, INDEPENDENT, 12);
+	tcVladN.add_new_mark(stVladS, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stVladS, EXAM, 9);
 
 	tcVladT.add_student(stVladS);
-	tcVladT.add_new_mark(stVladS, 1, 10);
-	tcVladT.add_new_mark(stVladS, 1, 9);
-	tcVladT.add_new_mark(stVladS, 2, 11);
-	tcVladT.add_new_mark(stVladS, 3, 8);
-	tcVladT.add_new_mark(stVladS, 3, 10);
-	tcVladT.add_new_mark(stVladS, 4, 9);
+	tcVladT.add_new_mark(stVladS, HOME, 10);
+	tcVladT.add_new_mark(stVladS, HOME, 9);
+	tcVladT.add_new_mark(stVladS, TEST, 11);
+	tcVladT.add_new_mark(stVladS, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stVladS, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stVladS, EXAM, 9);
 	// 5/10
 	tcOlgaR.add_student(stNikG);
-	tcOlgaR.add_new_mark(stNikG, 1, 11);
-	tcOlgaR.add_new_mark(stNikG, 1, 9);
-	tcOlgaR.add_new_mark(stNikG, 2, 11);
-	tcOlgaR.add_new_mark(stNikG, 3, 8);
-	tcOlgaR.add_new_mark(stNikG, 3, 10);
-	tcOlgaR.add_new_mark(stNikG, 4, 7);
+	tcOlgaR.add_new_mark(stNikG, HOME, 11);
+	tcOlgaR.add_new_mark(stNikG, HOME, 9);
+	tcOlgaR.add_new_mark(stNikG, TEST, 11);
+	tcOlgaR.add_new_mark(stNikG, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stNikG, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stNikG, EXAM, 7);
 
 	tcVladN.add_student(stNikG);
-	tcVladN.add_new_mark(stNikG, 1, 10);
-	tcVladN.add_new_mark(stNikG, 1, 12);
-	tcVladN.add_new_mark(stNikG, 2, 11);
-	tcVladN.add_new_mark(stNikG, 3, 8);
-	tcVladN.add_new_mark(stNikG, 3, 10);
-	tcVladN.add_new_mark(stNikG, 4, 9);
+	tcVladN.add_new_mark(stNikG, HOME, 10);
+	tcVladN.add_new_mark(stNikG, HOME, 12);
+	tcVladN.add_new_mark(stNikG, TEST, 11);
+	tcVladN.add_new_mark(stNikG, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stNikG, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stNikG, EXAM, 9);
 
 	tcVladT.add_student(stNikG);
-	tcVladT.add_new_mark(stNikG, 1, 10);
-	tcVladT.add_new_mark(stNikG, 1, 9);
-	tcVladT.add_new_mark(stNikG, 2, 11);
-	tcVladT.add_new_mark(stNikG, 3, 8);
-	tcVladT.add_new_mark(stNikG, 3, 10);
-	tcVladT.add_new_mark(stNikG, 4, 6);
+	tcVladT.add_new_mark(stNikG, HOME, 10);
+	tcVladT.add_new_mark(stNikG, HOME, 9);
+	tcVladT.add_new_mark(stNikG, TEST, 11);
+	tcVladT.add_new_mark(stNikG, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stNikG, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stNikG, EXAM, 6);
 	// 6/10 
 	tcOlgaR.add_student(stMaksK);
-	tcOlgaR.add_new_mark(stMaksK, 1, 10);
-	tcOlgaR.add_new_mark(stMaksK, 1, 9);
-	tcOlgaR.add_new_mark(stMaksK, 2, 11);
-	tcOlgaR.add_new_mark(stMaksK, 3, 8);
-	tcOlgaR.add_new_mark(stMaksK, 3, 2);
-	tcOlgaR.add_new_mark(stMaksK, 4, 9);
+	tcOlgaR.add_new_mark(stMaksK, HOME, 10);
+	tcOlgaR.add_new_mark(stMaksK, HOME, 9);
+	tcOlgaR.add_new_mark(stMaksK, TEST, 11);
+	tcOlgaR.add_new_mark(stMaksK, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stMaksK, INDEPENDENT, 2);
+	tcOlgaR.add_new_mark(stMaksK, EXAM, 9);
 
 	tcVladN.add_student(stMaksK);
-	tcVladN.add_new_mark(stMaksK, 1, 10);
-	tcVladN.add_new_mark(stMaksK, 1, 9);
-	tcVladN.add_new_mark(stMaksK, 2, 11);
-	tcVladN.add_new_mark(stMaksK, 3, 3);
-	tcVladN.add_new_mark(stMaksK, 3, 10);
-	tcVladN.add_new_mark(stMaksK, 4, 9);
+	tcVladN.add_new_mark(stMaksK, HOME, 10);
+	tcVladN.add_new_mark(stMaksK, HOME, 9);
+	tcVladN.add_new_mark(stMaksK, TEST, 11);
+	tcVladN.add_new_mark(stMaksK, INDEPENDENT, 3);
+	tcVladN.add_new_mark(stMaksK, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stMaksK, EXAM, 9);
 
 	tcVladT.add_student(stMaksK);
-	tcVladT.add_new_mark(stMaksK, 1, 10);
-	tcVladT.add_new_mark(stMaksK, 1, 9);
-	tcVladT.add_new_mark(stMaksK, 2, 4);
-	tcVladT.add_new_mark(stMaksK, 3, 8);
-	tcVladT.add_new_mark(stMaksK, 3, 10);
-	tcVladT.add_new_mark(stMaksK, 4, 9);
+	tcVladT.add_new_mark(stMaksK, HOME, 10);
+	tcVladT.add_new_mark(stMaksK, HOME, 9);
+	tcVladT.add_new_mark(stMaksK, TEST, 4);
+	tcVladT.add_new_mark(stMaksK, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stMaksK, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stMaksK, EXAM, 9);
 	// 7/10
 	tcOlgaR.add_student(stIliaZ);
-	tcOlgaR.add_new_mark(stIliaZ, 1, 2);
-	tcOlgaR.add_new_mark(stIliaZ, 1, 9);
-	tcOlgaR.add_new_mark(stIliaZ, 2, 11);
-	tcOlgaR.add_new_mark(stIliaZ, 3, 8);
-	tcOlgaR.add_new_mark(stIliaZ, 3, 11);
-	tcOlgaR.add_new_mark(stIliaZ, 4, 9);
+	tcOlgaR.add_new_mark(stIliaZ, HOME, 2);
+	tcOlgaR.add_new_mark(stIliaZ, HOME, 9);
+	tcOlgaR.add_new_mark(stIliaZ, TEST, 11);
+	tcOlgaR.add_new_mark(stIliaZ, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stIliaZ, INDEPENDENT, 11);
+	tcOlgaR.add_new_mark(stIliaZ, EXAM, 9);
 
 	tcVladN.add_student(stIliaZ);
-	tcVladN.add_new_mark(stIliaZ, 1, 10);
-	tcVladN.add_new_mark(stIliaZ, 1, 9);
-	tcVladN.add_new_mark(stIliaZ, 2, 12);
-	tcVladN.add_new_mark(stIliaZ, 3, 8);
-	tcVladN.add_new_mark(stIliaZ, 3, 10);
-	tcVladN.add_new_mark(stIliaZ, 4, 3);
+	tcVladN.add_new_mark(stIliaZ, HOME, 10);
+	tcVladN.add_new_mark(stIliaZ, HOME, 9);
+	tcVladN.add_new_mark(stIliaZ, TEST, 12);
+	tcVladN.add_new_mark(stIliaZ, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stIliaZ, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stIliaZ, EXAM, 3);
 
 	tcVladT.add_student(stIliaZ);
-	tcVladT.add_new_mark(stIliaZ, 1, 10);
-	tcVladT.add_new_mark(stIliaZ, 1, 9);
-	tcVladT.add_new_mark(stIliaZ, 2, 11);
-	tcVladT.add_new_mark(stIliaZ, 3, 8);
-	tcVladT.add_new_mark(stIliaZ, 3, 10);
-	tcVladT.add_new_mark(stIliaZ, 4, 9);
+	tcVladT.add_new_mark(stIliaZ, HOME, 10);
+	tcVladT.add_new_mark(stIliaZ, HOME, 9);
+	tcVladT.add_new_mark(stIliaZ, TEST, 11);
+	tcVladT.add_new_mark(stIliaZ, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stIliaZ, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stIliaZ, EXAM, 9);
 	// 8/10 
 	tcOlgaR.add_student(stStepR);
-	tcOlgaR.add_new_mark(stStepR, 1, 12);
-	tcOlgaR.add_new_mark(stStepR, 1, 9);
-	tcOlgaR.add_new_mark(stStepR, 2, 11);
-	tcOlgaR.add_new_mark(stStepR, 3, 8);
-	tcOlgaR.add_new_mark(stStepR, 3, 4);
-	tcOlgaR.add_new_mark(stStepR, 4, 9);
+	tcOlgaR.add_new_mark(stStepR, HOME, 12);
+	tcOlgaR.add_new_mark(stStepR, HOME, 9);
+	tcOlgaR.add_new_mark(stStepR, TEST, 11);
+	tcOlgaR.add_new_mark(stStepR, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stStepR, INDEPENDENT, 4);
+	tcOlgaR.add_new_mark(stStepR, EXAM, 9);
 
 	tcVladN.add_student(stStepR);
-	tcVladN.add_new_mark(stStepR, 1, 10);
-	tcVladN.add_new_mark(stStepR, 1, 9);
-	tcVladN.add_new_mark(stStepR, 2, 5);
-	tcVladN.add_new_mark(stStepR, 3, 8);
-	tcVladN.add_new_mark(stStepR, 3, 10);
-	tcVladN.add_new_mark(stStepR, 4, 12);
+	tcVladN.add_new_mark(stStepR, HOME, 10);
+	tcVladN.add_new_mark(stStepR, HOME, 9);
+	tcVladN.add_new_mark(stStepR, TEST, 5);
+	tcVladN.add_new_mark(stStepR, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stStepR, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stStepR, EXAM, 12);
 
 	tcVladT.add_student(stStepR);
-	tcVladT.add_new_mark(stStepR, 1, 12);
-	tcVladT.add_new_mark(stStepR, 1, 9);
-	tcVladT.add_new_mark(stStepR, 2, 11);
-	tcVladT.add_new_mark(stStepR, 3, 8);
-	tcVladT.add_new_mark(stStepR, 3, 4);
-	tcVladT.add_new_mark(stStepR, 4, 9);
+	tcVladT.add_new_mark(stStepR, HOME, 12);
+	tcVladT.add_new_mark(stStepR, HOME, 9);
+	tcVladT.add_new_mark(stStepR, TEST, 11);
+	tcVladT.add_new_mark(stStepR, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stStepR, INDEPENDENT, 4);
+	tcVladT.add_new_mark(stStepR, EXAM, 9);
 	// 9/10
 	tcOlgaR.add_student(stAnasF);
-	tcOlgaR.add_new_mark(stAnasF, 1, 10);
-	tcOlgaR.add_new_mark(stAnasF, 1, 9);
-	tcOlgaR.add_new_mark(stAnasF, 2, 11);
-	tcOlgaR.add_new_mark(stAnasF, 3, 12);
-	tcOlgaR.add_new_mark(stAnasF, 3, 10);
-	tcOlgaR.add_new_mark(stAnasF, 4, 9);
+	tcOlgaR.add_new_mark(stAnasF, HOME, 10);
+	tcOlgaR.add_new_mark(stAnasF, HOME, 9);
+	tcOlgaR.add_new_mark(stAnasF, TEST, 11);
+	tcOlgaR.add_new_mark(stAnasF, INDEPENDENT, 12);
+	tcOlgaR.add_new_mark(stAnasF, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stAnasF, EXAM, 9);
 
 	tcVladN.add_student(stAnasF);
-	tcVladN.add_new_mark(stAnasF, 1, 10);
-	tcVladN.add_new_mark(stAnasF, 1, 9);
-	tcVladN.add_new_mark(stAnasF, 2, 11);
-	tcVladN.add_new_mark(stAnasF, 3, 8);
-	tcVladN.add_new_mark(stAnasF, 3, 4);
-	tcVladN.add_new_mark(stAnasF, 4, 9);
+	tcVladN.add_new_mark(stAnasF, HOME, 10);
+	tcVladN.add_new_mark(stAnasF, HOME, 9);
+	tcVladN.add_new_mark(stAnasF, TEST, 11);
+	tcVladN.add_new_mark(stAnasF, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stAnasF, INDEPENDENT, 4);
+	tcVladN.add_new_mark(stAnasF, EXAM, 9);
 
 	tcVladT.add_student(stAnasF);
-	tcVladT.add_new_mark(stAnasF, 1, 10);
-	tcVladT.add_new_mark(stAnasF, 1, 9);
-	tcVladT.add_new_mark(stAnasF, 2, 11);
-	tcVladT.add_new_mark(stAnasF, 3, 8);
-	tcVladT.add_new_mark(stAnasF, 3, 10);
-	tcVladT.add_new_mark(stAnasF, 4, 9);
+	tcVladT.add_new_mark(stAnasF, HOME, 10);
+	tcVladT.add_new_mark(stAnasF, HOME, 9);
+	tcVladT.add_new_mark(stAnasF, TEST, 11);
+	tcVladT.add_new_mark(stAnasF, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stAnasF, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stAnasF, EXAM, 9);
 	// 10/10 
 	tcOlgaR.add_student(stSofS);
-	tcOlgaR.add_new_mark(stSofS, 1, 10);
-	tcOlgaR.add_new_mark(stSofS, 1, 9);
-	tcOlgaR.add_new_mark(stSofS, 2, 11);
-	tcOlgaR.add_new_mark(stSofS, 3, 8);
-	tcOlgaR.add_new_mark(stSofS, 3, 10);
-	tcOlgaR.add_new_mark(stSofS, 4, 9);
+	tcOlgaR.add_new_mark(stSofS, HOME, 10);
+	tcOlgaR.add_new_mark(stSofS, HOME, 9);
+	tcOlgaR.add_new_mark(stSofS, TEST, 11);
+	tcOlgaR.add_new_mark(stSofS, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stSofS, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stSofS, EXAM, 9);
 
 	tcVladN.add_student(stSofS);
-	tcVladN.add_new_mark(stSofS, 1, 10);
-	tcVladN.add_new_mark(stSofS, 1, 9);
-	tcVladN.add_new_mark(stSofS, 2, 11);
-	tcVladN.add_new_mark(stSofS, 3, 8);
-	tcVladN.add_new_mark(stSofS, 3, 10);
-	tcVladN.add_new_mark(stSofS, 4, 9);
+	tcVladN.add_new_mark(stSofS, HOME, 10);
+	tcVladN.add_new_mark(stSofS, HOME, 9);
+	tcVladN.add_new_mark(stSofS, TEST, 11);
+	tcVladN.add_new_mark(stSofS, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stSofS, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stSofS, EXAM, 9);
 
 	tcVladT.add_student(stSofS);
-	tcVladT.add_new_mark(stSofS, 1, 10);
-	tcVladT.add_new_mark(stSofS, 1, 9);
-	tcVladT.add_new_mark(stSofS, 2, 11);
-	tcVladT.add_new_mark(stSofS, 3, 8);
-	tcVladT.add_new_mark(stSofS, 3, 10);
-	tcVladT.add_new_mark(stSofS, 4, 9);
+	tcVladT.add_new_mark(stSofS, HOME, 10);
+	tcVladT.add_new_mark(stSofS, HOME, 9);
+	tcVladT.add_new_mark(stSofS, TEST, 11);
+	tcVladT.add_new_mark(stSofS, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stSofS, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stSofS, EXAM, 9);
 	// 1/10 11-B
 	tcOlgaR.add_student(stTimS);
-	tcOlgaR.add_new_mark(stTimS, 1, 10);
-	tcOlgaR.add_new_mark(stTimS, 1, 9);
-	tcOlgaR.add_new_mark(stTimS, 2, 4);
-	tcOlgaR.add_new_mark(stTimS, 3, 8);
-	tcOlgaR.add_new_mark(stTimS, 3, 10);
-	tcOlgaR.add_new_mark(stTimS, 4, 9);
+	tcOlgaR.add_new_mark(stTimS, HOME, 10);
+	tcOlgaR.add_new_mark(stTimS, HOME, 9);
+	tcOlgaR.add_new_mark(stTimS, TEST, 4);
+	tcOlgaR.add_new_mark(stTimS, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stTimS, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stTimS, EXAM, 9);
 
 	tcVladN.add_student(stTimS);
-	tcVladN.add_new_mark(stTimS, 1, 10);
-	tcVladN.add_new_mark(stTimS, 1, 9);
-	tcVladN.add_new_mark(stTimS, 2, 11);
-	tcVladN.add_new_mark(stTimS, 3, 8);
-	tcVladN.add_new_mark(stTimS, 3, 3);
-	tcVladN.add_new_mark(stTimS, 4, 9);
+	tcVladN.add_new_mark(stTimS, HOME, 10);
+	tcVladN.add_new_mark(stTimS, HOME, 9);
+	tcVladN.add_new_mark(stTimS, TEST, 11);
+	tcVladN.add_new_mark(stTimS, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stTimS, INDEPENDENT, 3);
+	tcVladN.add_new_mark(stTimS, EXAM, 9);
 
 	tcVladT.add_student(stTimS);
-	tcVladT.add_new_mark(stTimS, 1, 10);
-	tcVladT.add_new_mark(stTimS, 1, 9);
-	tcVladT.add_new_mark(stTimS, 2, 11);
-	tcVladT.add_new_mark(stTimS, 3, 8);
-	tcVladT.add_new_mark(stTimS, 3, 2);
-	tcVladT.add_new_mark(stTimS, 4, 9);
+	tcVladT.add_new_mark(stTimS, HOME, 10);
+	tcVladT.add_new_mark(stTimS, HOME, 9);
+	tcVladT.add_new_mark(stTimS, TEST, 11);
+	tcVladT.add_new_mark(stTimS, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stTimS, INDEPENDENT, 2);
+	tcVladT.add_new_mark(stTimS, EXAM, 9);
 	// 2/10
 	tcOlgaR.add_student(stIvanS);
-	tcOlgaR.add_new_mark(stIvanS, 1, 12);
-	tcOlgaR.add_new_mark(stIvanS, 1, 12);
-	tcOlgaR.add_new_mark(stIvanS, 2, 11);
-	tcOlgaR.add_new_mark(stIvanS, 3, 8);
-	tcOlgaR.add_new_mark(stIvanS, 3, 10);
-	tcOlgaR.add_new_mark(stIvanS, 4, 9);
+	tcOlgaR.add_new_mark(stIvanS, HOME, 12);
+	tcOlgaR.add_new_mark(stIvanS, HOME, 12);
+	tcOlgaR.add_new_mark(stIvanS, TEST, 11);
+	tcOlgaR.add_new_mark(stIvanS, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stIvanS, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stIvanS, EXAM, 9);
 
 	tcVladN.add_student(stIvanS);
-	tcVladN.add_new_mark(stIvanS, 1, 10);
-	tcVladN.add_new_mark(stIvanS, 1, 12);
-	tcVladN.add_new_mark(stIvanS, 2, 11);
-	tcVladN.add_new_mark(stIvanS, 3, 8);
-	tcVladN.add_new_mark(stIvanS, 3, 10);
-	tcVladN.add_new_mark(stIvanS, 4, 9);
+	tcVladN.add_new_mark(stIvanS, HOME, 10);
+	tcVladN.add_new_mark(stIvanS, HOME, 12);
+	tcVladN.add_new_mark(stIvanS, TEST, 11);
+	tcVladN.add_new_mark(stIvanS, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stIvanS, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stIvanS, EXAM, 9);
 
 	tcVladT.add_student(stIvanS);
-	tcVladT.add_new_mark(stIvanS, 1, 10);
-	tcVladT.add_new_mark(stIvanS, 1, 9);
-	tcVladT.add_new_mark(stIvanS, 2, 11);
-	tcVladT.add_new_mark(stIvanS, 3, 8);
-	tcVladT.add_new_mark(stIvanS, 3, 10);
-	tcVladT.add_new_mark(stIvanS, 4, 9);
+	tcVladT.add_new_mark(stIvanS, HOME, 10);
+	tcVladT.add_new_mark(stIvanS, HOME, 9);
+	tcVladT.add_new_mark(stIvanS, TEST, 11);
+	tcVladT.add_new_mark(stIvanS, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stIvanS, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stIvanS, EXAM, 9);
 	// 3/10
 	tcOlgaR.add_student(stVladK);
-	tcOlgaR.add_new_mark(stVladK, 1, 10);
-	tcOlgaR.add_new_mark(stVladK, 1, 12);
-	tcOlgaR.add_new_mark(stVladK, 2, 11);
-	tcOlgaR.add_new_mark(stVladK, 3, 8);
-	tcOlgaR.add_new_mark(stVladK, 3, 10);
-	tcOlgaR.add_new_mark(stVladK, 4, 9);
+	tcOlgaR.add_new_mark(stVladK, HOME, 10);
+	tcOlgaR.add_new_mark(stVladK, HOME, 12);
+	tcOlgaR.add_new_mark(stVladK, TEST, 11);
+	tcOlgaR.add_new_mark(stVladK, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stVladK, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stVladK, EXAM, 9);
 
 	tcVladN.add_student(stVladK);
-	tcVladN.add_new_mark(stVladK, 1, 10);
-	tcVladN.add_new_mark(stVladK, 1, 9);
-	tcVladN.add_new_mark(stVladK, 2, 4);
-	tcVladN.add_new_mark(stVladK, 3, 8);
-	tcVladN.add_new_mark(stVladK, 3, 10);
-	tcVladN.add_new_mark(stVladK, 4, 9);
+	tcVladN.add_new_mark(stVladK, HOME, 10);
+	tcVladN.add_new_mark(stVladK, HOME, 9);
+	tcVladN.add_new_mark(stVladK, TEST, 4);
+	tcVladN.add_new_mark(stVladK, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stVladK, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stVladK, EXAM, 9);
 
 	tcVladT.add_student(stVladK);
-	tcVladT.add_new_mark(stVladK, 1, 10);
-	tcVladT.add_new_mark(stVladK, 1, 9);
-	tcVladT.add_new_mark(stVladK, 2, 3);
-	tcVladT.add_new_mark(stVladK, 3, 8);
-	tcVladT.add_new_mark(stVladK, 3, 10);
-	tcVladT.add_new_mark(stVladK, 4, 9);
+	tcVladT.add_new_mark(stVladK, HOME, 10);
+	tcVladT.add_new_mark(stVladK, HOME, 9);
+	tcVladT.add_new_mark(stVladK, TEST, 3);
+	tcVladT.add_new_mark(stVladK, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stVladK, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stVladK, EXAM, 9);
 	// 4/10
 	tcOlgaR.add_student(stVladM);
-	tcOlgaR.add_new_mark(stVladM, 1, 10);
-	tcOlgaR.add_new_mark(stVladM, 1, 9);
-	tcOlgaR.add_new_mark(stVladM, 2, 11);
-	tcOlgaR.add_new_mark(stVladM, 3, 8);
-	tcOlgaR.add_new_mark(stVladM, 3, 2);
-	tcOlgaR.add_new_mark(stVladM, 4, 9);
+	tcOlgaR.add_new_mark(stVladM, HOME, 10);
+	tcOlgaR.add_new_mark(stVladM, HOME, 9);
+	tcOlgaR.add_new_mark(stVladM, TEST, 11);
+	tcOlgaR.add_new_mark(stVladM, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stVladM, INDEPENDENT, 2);
+	tcOlgaR.add_new_mark(stVladM, EXAM, 9);
 
 	tcVladN.add_student(stVladM);
-	tcVladN.add_new_mark(stVladM, 1, 10);
-	tcVladN.add_new_mark(stVladM, 1, 9);
-	tcVladN.add_new_mark(stVladM, 2, 11);
-	tcVladN.add_new_mark(stVladM, 3, 8);
-	tcVladN.add_new_mark(stVladM, 3, 11);
-	tcVladN.add_new_mark(stVladM, 4, 9);
+	tcVladN.add_new_mark(stVladM, HOME, 10);
+	tcVladN.add_new_mark(stVladM, HOME, 9);
+	tcVladN.add_new_mark(stVladM, TEST, 11);
+	tcVladN.add_new_mark(stVladM, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stVladM, INDEPENDENT, 11);
+	tcVladN.add_new_mark(stVladM, EXAM, 9);
 
 	tcVladT.add_student(stVladM);
-	tcVladT.add_new_mark(stVladM, 1, 10);
-	tcVladT.add_new_mark(stVladM, 1, 9);
-	tcVladT.add_new_mark(stVladM, 2, 11);
-	tcVladT.add_new_mark(stVladM, 3, 8);
-	tcVladT.add_new_mark(stVladM, 3, 10);
-	tcVladT.add_new_mark(stVladM, 4, 9);
+	tcVladT.add_new_mark(stVladM, HOME, 10);
+	tcVladT.add_new_mark(stVladM, HOME, 9);
+	tcVladT.add_new_mark(stVladM, TEST, 11);
+	tcVladT.add_new_mark(stVladM, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stVladM, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stVladM, EXAM, 9);
 	// 5/10
 	tcOlgaR.add_student(stAndrF);
-	tcOlgaR.add_new_mark(stAndrF, 1, 10);
-	tcOlgaR.add_new_mark(stAndrF, 1, 9);
-	tcOlgaR.add_new_mark(stAndrF, 2, 11);
-	tcOlgaR.add_new_mark(stAndrF, 3, 8);
-	tcOlgaR.add_new_mark(stAndrF, 3, 12);
-	tcOlgaR.add_new_mark(stAndrF, 4, 9);
+	tcOlgaR.add_new_mark(stAndrF, HOME, 10);
+	tcOlgaR.add_new_mark(stAndrF, HOME, 9);
+	tcOlgaR.add_new_mark(stAndrF, TEST, 11);
+	tcOlgaR.add_new_mark(stAndrF, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stAndrF, INDEPENDENT, 12);
+	tcOlgaR.add_new_mark(stAndrF, EXAM, 9);
 
 	tcVladN.add_student(stAndrF);
-	tcVladN.add_new_mark(stAndrF, 1, 10);
-	tcVladN.add_new_mark(stAndrF, 1, 9);
-	tcVladN.add_new_mark(stAndrF, 2, 11);
-	tcVladN.add_new_mark(stAndrF, 3, 8);
-	tcVladN.add_new_mark(stAndrF, 3, 10);
-	tcVladN.add_new_mark(stAndrF, 4, 9);
+	tcVladN.add_new_mark(stAndrF, HOME, 10);
+	tcVladN.add_new_mark(stAndrF, HOME, 9);
+	tcVladN.add_new_mark(stAndrF, TEST, 11);
+	tcVladN.add_new_mark(stAndrF, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stAndrF, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stAndrF, EXAM, 9);
 
 	tcVladT.add_student(stAndrF);
-	tcVladT.add_new_mark(stAndrF, 1, 10);
-	tcVladT.add_new_mark(stAndrF, 1, 9);
-	tcVladT.add_new_mark(stAndrF, 2, 11);
-	tcVladT.add_new_mark(stAndrF, 3, 8);
-	tcVladT.add_new_mark(stAndrF, 3, 12);
-	tcVladT.add_new_mark(stAndrF, 4, 9);
+	tcVladT.add_new_mark(stAndrF, HOME, 10);
+	tcVladT.add_new_mark(stAndrF, HOME, 9);
+	tcVladT.add_new_mark(stAndrF, TEST, 11);
+	tcVladT.add_new_mark(stAndrF, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stAndrF, INDEPENDENT, 12);
+	tcVladT.add_new_mark(stAndrF, EXAM, 9);
 	// 6/10 
 	tcOlgaR.add_student(stAndrO);
-	tcOlgaR.add_new_mark(stAndrO, 1, 11);
-	tcOlgaR.add_new_mark(stAndrO, 1, 9);
-	tcOlgaR.add_new_mark(stAndrO, 2, 11);
-	tcOlgaR.add_new_mark(stAndrO, 3, 11);
-	tcOlgaR.add_new_mark(stAndrO, 3, 11);
-	tcOlgaR.add_new_mark(stAndrO, 4, 9);
+	tcOlgaR.add_new_mark(stAndrO, HOME, 11);
+	tcOlgaR.add_new_mark(stAndrO, HOME, 9);
+	tcOlgaR.add_new_mark(stAndrO, TEST, 11);
+	tcOlgaR.add_new_mark(stAndrO, INDEPENDENT, 11);
+	tcOlgaR.add_new_mark(stAndrO, INDEPENDENT, 11);
+	tcOlgaR.add_new_mark(stAndrO, EXAM, 9);
 
 	tcVladN.add_student(stAndrO);
-	tcVladN.add_new_mark(stAndrO, 1, 10);
-	tcVladN.add_new_mark(stAndrO, 1, 9);
-	tcVladN.add_new_mark(stAndrO, 2, 11);
-	tcVladN.add_new_mark(stAndrO, 3, 8);
-	tcVladN.add_new_mark(stAndrO, 3, 10);
-	tcVladN.add_new_mark(stAndrO, 4, 9);
+	tcVladN.add_new_mark(stAndrO, HOME, 10);
+	tcVladN.add_new_mark(stAndrO, HOME, 9);
+	tcVladN.add_new_mark(stAndrO, TEST, 11);
+	tcVladN.add_new_mark(stAndrO, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stAndrO, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stAndrO, EXAM, 9);
 
 	tcVladT.add_student(stAndrO);
-	tcVladT.add_new_mark(stAndrO, 1, 10);
-	tcVladT.add_new_mark(stAndrO, 1, 9);
-	tcVladT.add_new_mark(stAndrO, 2, 11);
-	tcVladT.add_new_mark(stAndrO, 3, 8);
-	tcVladT.add_new_mark(stAndrO, 3, 10);
-	tcVladT.add_new_mark(stAndrO, 4, 9);
+	tcVladT.add_new_mark(stAndrO, HOME, 10);
+	tcVladT.add_new_mark(stAndrO, HOME, 9);
+	tcVladT.add_new_mark(stAndrO, TEST, 11);
+	tcVladT.add_new_mark(stAndrO, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stAndrO, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stAndrO, EXAM, 9);
 	// 7/10
 	tcOlgaR.add_student(stNikV);
-	tcOlgaR.add_new_mark(stNikV, 1, 10);
-	tcOlgaR.add_new_mark(stNikV, 1, 9);
-	tcOlgaR.add_new_mark(stNikV, 2, 11);
-	tcOlgaR.add_new_mark(stNikV, 3, 8);
-	tcOlgaR.add_new_mark(stNikV, 3, 10);
-	tcOlgaR.add_new_mark(stNikV, 4, 9);
+	tcOlgaR.add_new_mark(stNikV, HOME, 10);
+	tcOlgaR.add_new_mark(stNikV, HOME, 9);
+	tcOlgaR.add_new_mark(stNikV, TEST, 11);
+	tcOlgaR.add_new_mark(stNikV, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stNikV, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stNikV, EXAM, 9);
 
 	tcVladN.add_student(stNikV);
-	tcVladN.add_new_mark(stNikV, 1, 10);
-	tcVladN.add_new_mark(stNikV, 1, 9);
-	tcVladN.add_new_mark(stNikV, 2, 11);
-	tcVladN.add_new_mark(stNikV, 3, 8);
-	tcVladN.add_new_mark(stNikV, 3, 10);
-	tcVladN.add_new_mark(stNikV, 4, 9);
+	tcVladN.add_new_mark(stNikV, HOME, 10);
+	tcVladN.add_new_mark(stNikV, HOME, 9);
+	tcVladN.add_new_mark(stNikV, TEST, 11);
+	tcVladN.add_new_mark(stNikV, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stNikV, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stNikV, EXAM, 9);
 
 	tcVladT.add_student(stNikV);
-	tcVladT.add_new_mark(stNikV, 1, 10);
-	tcVladT.add_new_mark(stNikV, 1, 9);
-	tcVladT.add_new_mark(stNikV, 2, 11);
-	tcVladT.add_new_mark(stNikV, 3, 8);
-	tcVladT.add_new_mark(stNikV, 3, 10);
-	tcVladT.add_new_mark(stNikV, 4, 9);
+	tcVladT.add_new_mark(stNikV, HOME, 10);
+	tcVladT.add_new_mark(stNikV, HOME, 9);
+	tcVladT.add_new_mark(stNikV, TEST, 11);
+	tcVladT.add_new_mark(stNikV, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stNikV, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stNikV, EXAM, 9);
 	// 8/10 
 	tcOlgaR.add_student(stAlexE);
-	tcOlgaR.add_new_mark(stAlexE, 1, 10);
-	tcOlgaR.add_new_mark(stAlexE, 1, 9);
-	tcOlgaR.add_new_mark(stAlexE, 2, 11);
-	tcOlgaR.add_new_mark(stAlexE, 3, 12);
-	tcOlgaR.add_new_mark(stAlexE, 3, 10);
-	tcOlgaR.add_new_mark(stAlexE, 4, 12);
+	tcOlgaR.add_new_mark(stAlexE, HOME, 10);
+	tcOlgaR.add_new_mark(stAlexE, HOME, 9);
+	tcOlgaR.add_new_mark(stAlexE, TEST, 11);
+	tcOlgaR.add_new_mark(stAlexE, INDEPENDENT, 12);
+	tcOlgaR.add_new_mark(stAlexE, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stAlexE, EXAM, 12);
 
 	tcVladN.add_student(stAlexE);
-	tcVladN.add_new_mark(stAlexE, 1, 10);
-	tcVladN.add_new_mark(stAlexE, 1, 9);
-	tcVladN.add_new_mark(stAlexE, 2, 11);
-	tcVladN.add_new_mark(stAlexE, 3, 4);
-	tcVladN.add_new_mark(stAlexE, 3, 10);
-	tcVladN.add_new_mark(stAlexE, 4, 9);
+	tcVladN.add_new_mark(stAlexE, HOME, 10);
+	tcVladN.add_new_mark(stAlexE, HOME, 9);
+	tcVladN.add_new_mark(stAlexE, TEST, 11);
+	tcVladN.add_new_mark(stAlexE, INDEPENDENT, 4);
+	tcVladN.add_new_mark(stAlexE, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stAlexE, EXAM, 9);
 
 	tcVladT.add_student(stAlexE);
-	tcVladT.add_new_mark(stAlexE, 1, 10);
-	tcVladT.add_new_mark(stAlexE, 1, 9);
-	tcVladT.add_new_mark(stAlexE, 2, 11);
-	tcVladT.add_new_mark(stAlexE, 3, 8);
-	tcVladT.add_new_mark(stAlexE, 3, 7);
-	tcVladT.add_new_mark(stAlexE, 4, 9);
+	tcVladT.add_new_mark(stAlexE, HOME, 10);
+	tcVladT.add_new_mark(stAlexE, HOME, 9);
+	tcVladT.add_new_mark(stAlexE, TEST, 11);
+	tcVladT.add_new_mark(stAlexE, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stAlexE, INDEPENDENT, 7);
+	tcVladT.add_new_mark(stAlexE, EXAM, 9);
 	// 9/10
 	tcOlgaR.add_student(stDarB);
-	tcOlgaR.add_new_mark(stDarB, 1, 10);
-	tcOlgaR.add_new_mark(stDarB, 1, 9);
-	tcOlgaR.add_new_mark(stDarB, 2, 2);
-	tcOlgaR.add_new_mark(stDarB, 3, 8);
-	tcOlgaR.add_new_mark(stDarB, 3, 10);
-	tcOlgaR.add_new_mark(stDarB, 4, 9);
+	tcOlgaR.add_new_mark(stDarB, HOME, 10);
+	tcOlgaR.add_new_mark(stDarB, HOME, 9);
+	tcOlgaR.add_new_mark(stDarB, TEST, 2);
+	tcOlgaR.add_new_mark(stDarB, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stDarB, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stDarB, EXAM, 9);
 
 	tcVladN.add_student(stDarB);
-	tcVladN.add_new_mark(stDarB, 1, 10);
-	tcVladN.add_new_mark(stDarB, 1, 9);
-	tcVladN.add_new_mark(stDarB, 2, 3);
-	tcVladN.add_new_mark(stDarB, 3, 8);
-	tcVladN.add_new_mark(stDarB, 3, 10);
-	tcVladN.add_new_mark(stDarB, 4, 9);
+	tcVladN.add_new_mark(stDarB, HOME, 10);
+	tcVladN.add_new_mark(stDarB, HOME, 9);
+	tcVladN.add_new_mark(stDarB, TEST, 3);
+	tcVladN.add_new_mark(stDarB, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stDarB, INDEPENDENT, 10);
+	tcVladN.add_new_mark(stDarB, EXAM, 9);
 
 	tcVladT.add_student(stDarB);
-	tcVladT.add_new_mark(stDarB, 1, 10);
-	tcVladT.add_new_mark(stDarB, 1, 9);
-	tcVladT.add_new_mark(stDarB, 2, 4);
-	tcVladT.add_new_mark(stDarB, 3, 8);
-	tcVladT.add_new_mark(stDarB, 3, 10);
-	tcVladT.add_new_mark(stDarB, 4, 9);
+	tcVladT.add_new_mark(stDarB, HOME, 10);
+	tcVladT.add_new_mark(stDarB, HOME, 9);
+	tcVladT.add_new_mark(stDarB, TEST, 4);
+	tcVladT.add_new_mark(stDarB, INDEPENDENT, 8);
+	tcVladT.add_new_mark(stDarB, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stDarB, EXAM, 9);
 	// 10/10 
 	tcOlgaR.add_student(stSvetO);
-	tcOlgaR.add_new_mark(stSvetO, 1, 10);
-	tcOlgaR.add_new_mark(stSvetO, 1, 9);
-	tcOlgaR.add_new_mark(stSvetO, 2, 2);
-	tcOlgaR.add_new_mark(stSvetO, 3, 8);
-	tcOlgaR.add_new_mark(stSvetO, 3, 10);
-	tcOlgaR.add_new_mark(stSvetO, 4, 9);
+	tcOlgaR.add_new_mark(stSvetO, HOME, 10);
+	tcOlgaR.add_new_mark(stSvetO, HOME, 9);
+	tcOlgaR.add_new_mark(stSvetO, TEST, 2);
+	tcOlgaR.add_new_mark(stSvetO, INDEPENDENT, 8);
+	tcOlgaR.add_new_mark(stSvetO, INDEPENDENT, 10);
+	tcOlgaR.add_new_mark(stSvetO, EXAM, 9);
 
 	tcVladN.add_student(stSvetO);
-	tcVladN.add_new_mark(stSvetO, 1, 10);
-	tcVladN.add_new_mark(stSvetO, 1, 11);
-	tcVladN.add_new_mark(stSvetO, 2, 11);
-	tcVladN.add_new_mark(stSvetO, 3, 8);
-	tcVladN.add_new_mark(stSvetO, 3, 11);
-	tcVladN.add_new_mark(stSvetO, 4, 11);
+	tcVladN.add_new_mark(stSvetO, HOME, 10);
+	tcVladN.add_new_mark(stSvetO, HOME, 11);
+	tcVladN.add_new_mark(stSvetO, TEST, 11);
+	tcVladN.add_new_mark(stSvetO, INDEPENDENT, 8);
+	tcVladN.add_new_mark(stSvetO, INDEPENDENT, 11);
+	tcVladN.add_new_mark(stSvetO, EXAM, 11);
 
 	tcVladT.add_student(stSvetO);
-	tcVladT.add_new_mark(stSvetO, 1, 10);
-	tcVladT.add_new_mark(stSvetO, 1, 9);
-	tcVladT.add_new_mark(stSvetO, 2, 11);
-	tcVladT.add_new_mark(stSvetO, 3, 12);
-	tcVladT.add_new_mark(stSvetO, 3, 10);
-	tcVladT.add_new_mark(stSvetO, 4, 9);
-
+	tcVladT.add_new_mark(stSvetO, HOME, 10);
+	tcVladT.add_new_mark(stSvetO, HOME, 9);
+	tcVladT.add_new_mark(stSvetO, TEST, 11);
+	tcVladT.add_new_mark(stSvetO, INDEPENDENT, 12);
+	tcVladT.add_new_mark(stSvetO, INDEPENDENT, 10);
+	tcVladT.add_new_mark(stSvetO, EXAM, 9);
 	// For menu / Menu
 	// Add students and teachers to a suitable vectors for manipulations in menu
-	vector<Student> forInterfaceStudent =
+	vector<Student> Students =
 	{ stVasB, stPetrM, stDmiS, stVladS, stNikG, stMaksK, stIliaZ, stStepR, stAnasF, stSofS,
 	stTimS, stIvanS, stVladK, stVladM, stAndrF, stAndrO, stNikV, stAlexE, stDarB, stSvetO };
-	vector<Teacher> forInterfaceTeacher = { tcOlgaR, tcVladN, tcVladT };
-	Interface(forInterfaceStudent, forInterfaceTeacher);
+	vector<Teacher> Teachers = { tcOlgaR, tcVladN, tcVladT };
+	Interface(Students, Teachers);
 
 	return 0;
 }
