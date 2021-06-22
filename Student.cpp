@@ -48,7 +48,7 @@ bool Student::already_has_final(const std::string& subject)
     bool already_has = false;
     for (int i = 0; i < marks.size(); i++) 
     {
-        if (marks[i].type_of_mark == 5) 
+        if (marks[i].type_of_mark == 5 && marks[i].subject == subject) 
         {
             already_has = true;
         }
