@@ -19,7 +19,7 @@ void Interface(vector<Student>& interfaceStudent, vector<Teacher>& interfaceTeac
 		cout << "Choose an appropriate option:\n";
 		cout << "1 - Check average mark given by a teacher\n";
 		cout << "2 - Print all marks of a student\n";
-		cout << "3 - Check final mark of a student\n";
+		cout << "3 - Give and check a final mark of a student\n";
 		cout << "4 - Exit\n";
 		cin >> choice; 
 		while (true)
