@@ -69,15 +69,8 @@ void InterfaceAverageTeacher(vector<Teacher>& interfaceTeacher)
 		}
 		else { break; }
 	}
-	for (size_t i = 0; i < interfaceTeacher.size(); i++)
-	{
-		if (i + 1 == choicecase1) 
-		{
-			interfaceTeacher[i].count_avg_mark();
-			interfaceTeacher[i].print_avg_mark();
-			cout << endl;
-		}
-	}
+	interfaceTeacher[choicecase1-1].print_avg_mark();
+	cout << endl;
 }
 
 void InterfacePrintAllStudent(vector<Student>& interfaceStudent)
@@ -241,7 +234,6 @@ void InterfaceFinalStudent(vector<Student>& interfaceStudent, vector<Teacher>& i
 }
 
 int main() {
-
 	// 11-A Students
 	Student stVasB("Bragin Vasiliy Petrovich", 18, 180, "11-A");
 	Student stPetrM("Maksimov Petr Pavlovich", 17, 182, "11-A");
@@ -750,11 +742,11 @@ int main() {
 	tcVladT.add_new_mark(stSvetO, EXAM, 9);
 	// For menu / Menu
 	// Add students and teachers to a suitable vectors for manipulations in menu
-	vector<Student> Students =
+	std::vector<Student> Students =
 	{ stVasB, stPetrM, stDmiS, stVladS, stNikG, stMaksK, stIliaZ, stStepR, stAnasF, stSofS,
 	stTimS, stIvanS, stVladK, stVladM, stAndrF, stAndrO, stNikV, stAlexE, stDarB, stSvetO };
-	vector<Teacher> Teachers = { tcOlgaR, tcVladN, tcVladT };
-	Interface(Students, Teachers);
+	std::vector<Teacher> Teachers = { tcOlgaR, tcVladN, tcVladT };
 
+	Interface(Students, Teachers);
 	return 0;
 }
